@@ -1,0 +1,150 @@
+:host {
+  ::ng-deep {
+    .ng-fa-icon {
+      color: #fff;
+    }
+  }
+}
+
+aside {
+  display: flex;
+  padding-bottom: 16px;
+  height: 100%;
+  width: 73px;
+  flex-direction: column;
+  transition: .3s ease-in-out;
+
+  &:not(.expanded) {
+    nav > ul:not(:hover) {
+      display: none;
+    }
+
+    nav:hover {
+      width: 203px;
+
+      & > ul {
+        span {
+          width: 100%;
+          transition: none;
+        }
+      }
+    }
+  }
+
+  &.expanded {
+    width: 203px;
+
+    button {
+      .wrapper {
+        span, .label-container {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  nav {
+    position: relative;
+    margin-bottom: 16px;
+    overflow: hidden;
+    z-index: 10;
+    background-color: inherit;
+
+    > ul {
+      margin-bottom: 0;
+      padding: 0 8px;
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+      overflow-y: auto;
+      list-style: none;
+    }
+  }
+
+  button {
+    display: flex;
+    border: 0;
+    border-radius: 0;
+    padding: 12px 25px;
+    width: 100%;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: #6261b4;
+
+    .icon-container {
+      width: 25px;
+      flex-shrink: 0;
+
+      &:last-child {
+        margin-left: auto;
+      }
+
+      &.chevron {
+        font-size: .6rem;
+        font-weight: bold;
+        opacity: .8;
+      }
+    }
+
+    span {
+      text-align: left;
+    }
+
+    .wrapper {
+      display: flex;
+      width: 100%;
+      min-width: 25px;
+      flex: 1;
+      align-items: center;
+      white-space: nowrap;
+      flex-wrap: nowrap;
+      overflow: hidden;
+
+      .label-container {
+        span {
+          margin-left: 24px;
+        }
+      }
+
+      span, .label-container {
+        width: 0;
+        overflow: hidden;
+        transition: width .3s ease-in-out;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+
+  .toggler {
+    height: 6%;
+    background-color: #5554aa;
+    color: #fff;
+  }
+
+  .item {
+    border: none;
+    border-radius: 0;
+    padding: 0px 8px;
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+
+    button { 
+      a {
+        text-decoration: none;
+        color: #fff;
+      }
+
+      &:hover {
+        background: #8887c4
+      }
+    }
+
+    &:active, &:hover {
+      cursor: pointer;
+      border-radius: 8px;
+      background-color: #8887c4;
+    }
+  }
+
+}
