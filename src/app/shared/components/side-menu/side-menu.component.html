@@ -1,0 +1,33 @@
+<aside [ngClass]="{ expanded }">
+  <button
+    class="toggler"
+    (click)="expand()"
+  >
+    <div class="wrapper">
+      <div class="label-container">
+        <span>Navegação</span>
+      </div>
+      <div class="icon-container">
+        <fa-icon [icon]="faList"></fa-icon>
+      </div>
+    </div>
+  </button>
+
+  <nav>
+    <ul class="list-unstyled">
+      @for(item of menu; track $index) {
+        <li class="item">
+          <button>
+            <a
+              [routerLink]="item.routerLink"
+              class="text-decoration-none"
+            >
+              <span>{{item.label}}</span>
+            </a>
+          </button>
+          <fa-icon [icon]="item.icon"></fa-icon>
+        </li>
+      }
+    </ul>
+  </nav>
+</aside>
