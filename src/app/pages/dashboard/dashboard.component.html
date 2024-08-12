@@ -1,0 +1,23 @@
+<div class="dashboard-container">
+  <div class="header">
+    <div class="welcome">
+      <span>Olá Neto,</span>
+      <span>Bem vindo ao seu gestor de tarefas!</span>
+    </div>
+    <button>
+      Nova tarefa
+    </button>
+  </div>
+  
+  <div class="div-cards">
+    @for(card of cardEntries; track $index) {
+      <app-card [cardDataEntrie]="card"/>
+    }
+  </div>
+
+  <div class="div-chart">
+    @if(showLineChart()) {
+      <app-line-chart [chartData]="dashboardData().chartData"></app-line-chart>
+    }
+  </div>
+</div>
