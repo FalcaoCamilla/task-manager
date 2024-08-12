@@ -1,0 +1,9 @@
+:host {
+  ::ng-deep {
+    .p-card-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+}

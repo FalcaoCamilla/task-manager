@@ -1,0 +1,17 @@
+<!-- to do: skeleton para informações ainda não carregadas -->
+
+@if(cardDataEntrie) {
+  <p-card>
+    <div class="card-info">
+      <p class="title">
+        {{taskStatus[cardDataEntrie[0]]}}
+      </p>
+      <p class="value">
+        {{cardDataEntrie[1]}}
+      </p>
+    </div>
+    <div class="card-icon">
+      <fa-icon [icon]="taskIcons[cardDataEntrie[0]]"></fa-icon>
+    </div>
+  </p-card>
+}
