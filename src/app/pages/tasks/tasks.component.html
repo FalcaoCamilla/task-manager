@@ -21,8 +21,43 @@
 
   <div class="div-table">
     <div class="div-filter">
+      <p-dropdown 
+        optionLabel="text"
+        optionValue="id"
+        placeholder="Projetos"
+        [(ngModel)]="filterArray.project"
+        [options]="projectsOptions" 
+      >
+      </p-dropdown>
 
+      <p-dropdown 
+        optionLabel="text"
+        optionValue="id"
+        placeholder="Status"
+        [(ngModel)]="filterArray.status"
+        [options]="statusOptions" 
+      >
+      </p-dropdown>
+
+      <p-dropdown 
+        optionLabel="text"
+        optionValue="id"
+        placeholder="Todas as prioridades"
+        [(ngModel)]="filterArray.priority"
+        [options]="priorityOptions" 
+      >
+      </p-dropdown>
+
+      <p-dropdown 
+        optionLabel="text"
+        optionValue="id"
+        [options]="deadlineOptions" 
+        [(ngModel)]="filterArray.deadline"
+        [dropdownIcon]="'pi pi-calendar'"
+      >
+      </p-dropdown>
     </div>
+    
     <p-table 
       [value]="taskData" 
       [tableStyle]="{ 'min-width': '50rem' }" 
@@ -34,42 +69,74 @@
       <div [innerHtml]="sortIcon"></div>
       <ng-template pTemplate="header">
           <tr>
-              <th pSortableColumn="name">
-                Tarefa 
-                <p-sortIcon field="name" *ngTemplateOutlet="sortIcon"/>
+              <th pSortableColumn="name" style="width:25%">
+                <div class="th-content">
+                  Tarefa 
+                  <p-sortIcon field="name" *ngTemplateOutlet="sortIcon"/>
+                </div>
               </th>
               <th pSortableColumn="priority">
-                Prior.
-                <p-sortIcon field="priority" *ngTemplateOutlet="sortIcon"/>
+                <div class="th-content">
+                  Prior.
+                  <p-sortIcon field="priority" *ngTemplateOutlet="sortIcon"/>
+                </div>
               </th>
               <th pSortableColumn="project">
-                Projeto
-                <p-sortIcon field="project" *ngTemplateOutlet="sortIcon"/>
+                <div class="th-content">
+                  Projeto
+                  <p-sortIcon field="project" *ngTemplateOutlet="sortIcon"/>
+                </div>
               </th>
               <th pSortableColumn="status">
-                Status
-                <p-sortIcon field="status" *ngTemplateOutlet="sortIcon"/>
+                <div class="th-content">
+                  Status
+                  <p-sortIcon field="status" *ngTemplateOutlet="sortIcon"/>
+                </div>
               </th>
               <th pSortableColumn="responsible">
-                Respons.
-                <p-sortIcon field="responsible" *ngTemplateOutlet="sortIcon"/>
+                <div class="th-content">
+                  Respons.
+                  <p-sortIcon field="responsible" *ngTemplateOutlet="sortIcon"/>
+                </div>
               </th>
               <th pSortableColumn="deadline">
-                Deadline
-                <p-sortIcon field="deadline" *ngTemplateOutlet="sortIcon"/>
+                <div class="th-content">
+                  Deadline
+                  <p-sortIcon field="deadline" *ngTemplateOutlet="sortIcon"/>
+                </div>
               </th>
-              <th></th>
+              <th style="width:10%"></th>
           </tr>
       </ng-template>
       <ng-template pTemplate="body" let-task>
           <tr>
               <td class="text-decoration">{{ task.name }}</td>
-              <td>{{ priority[task.priority] }}</td>
-              <td class="text-decoration">{{ task.project }}</td>
-              <td>{{ status[task.status] }}</td>
-              <td>{{ task.responsible | userArrayFormatter }}</td>
-              <td>{{ task.deadline | date:'EE dd MMM' }}</td>
-              <td>icons</td>
+              <td class="priority">
+                <span [ngClass]="task.priority">
+                  {{ priority[task.priority] }}
+                </span>
+              </td>
+              <td class="text-decoration">
+                {{ task.project }}
+              </td>
+              <td class="status">
+                <span [ngClass]="task.status">
+                  {{ status[task.status] }}
+                </span>
+              </td>
+              <td>
+                {{ task.responsible | userArrayFormatter }}
+              </td>
+              <td>
+                {{ task.deadline | date:'EE dd MMM' }}
+              </td>
+              <td class="icons">
+                <div class="div-icons">
+                  <fa-icon [icon]="faTrash"></fa-icon>
+                  <fa-icon [icon]="faEye"></fa-icon>
+                  <fa-icon [icon]="faEdit"></fa-icon>
+                </div>
+              </td>
           </tr>
       </ng-template>
     </p-table>

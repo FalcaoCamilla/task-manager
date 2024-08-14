@@ -25,6 +25,39 @@
         }
       }
     }
+
+    .p-datatable .p-datatable-thead > tr > th {
+      font-size: 15px;
+      color: #797b7c;
+      background-color: transparent;
+      border-width: 0 0 3px 0;
+
+      .th-content {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        flex-wrap: nowrap;
+
+        .pi-sort {
+          font-size: 14px;
+        }
+      }
+    }
+
+    .p-datatable.p-datatable-lg .p-datatable-tbody > tr > td {
+      max-width: 100px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .ng-fa-icon {
+      color: #263238;
+      cursor: pointer;
+      .fa-trash-can {
+        color: #ff1414;
+      }
+    }
   }
 }
 
@@ -70,11 +103,60 @@
 
   .div-table {
     background-color: #fff;
+    padding: 30px 20px;
     border-radius: 8px;
     height: 100%;
 
+    .div-filter {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
     .text-decoration {
       text-decoration: underline;
+    }
+
+    .priority, .status {
+      span {
+        display: flex;
+        justify-content: center;
+        min-width: 40px;
+        padding: 5px;
+        border-radius: 8px;
+        font-size: 14px;
+        overflow: hidden;
+        text-overflow: ellipsis; //to do
+        white-space: nowrap;
+        color: #fff;
+
+        &.alta {
+          background-color: #ff1414;
+        }
+
+        &.media, &.em_progresso {
+          background-color: #ffa16c;
+        }
+
+        &.baixa, &.pendente {
+          background-color: #14b9ff;
+        }
+
+        &.concluido {
+          background-color: #4ad894;
+        }
+      }
+    }
+
+    .icons {
+      padding: 0.5rem;
+
+      .div-icons {
+        display: flex;
+        justify-content: space-around;
+        gap: 8px;
+        font-size: 20px;
+      }
     }
   }
 }
