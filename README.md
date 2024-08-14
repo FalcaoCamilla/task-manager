@@ -34,3 +34,6 @@ Inicie o servidor de desenvolvimento:
 ng serve
 ```
 Acesse o aplicativo: Abra o navegador em http://localhost:4200/.
+
+![image](https://github.com/user-attachments/assets/d1483ac2-a4d6-4d3d-ad6a-f729eb134fa8)
+
