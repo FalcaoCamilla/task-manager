@@ -7,7 +7,7 @@ export type Task = {
   status: status, 
   priority: priority, 
   project: string, 
-  responsible: User, 
+  responsible: User[], 
   deadline: Date, 
   file?: File, 
   finish_date?: Date | null

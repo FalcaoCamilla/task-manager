@@ -34,7 +34,7 @@ export class InMemoryService implements InMemoryDbService {
         status: 'concluido', 
         priority: 'media', 
         project: 'Task Manager', 
-        responsible: users[0], 
+        responsible: Array(users[0]), 
         deadline: new Date(2024, 8, 12, 12, 0, 0),
         finish_date: new Date(2024, 8, 10, 12, 0, 0) 
       },
@@ -45,7 +45,7 @@ export class InMemoryService implements InMemoryDbService {
         status: 'concluido', 
         priority: 'media', 
         project: 'Task Manager', 
-        responsible: users[1], 
+        responsible: Array(users[1]), 
         deadline: new Date(2024, 8, 13, 12, 0, 0), 
         finish_date: new Date(2024, 8, 11, 12, 0, 0) 
       },
@@ -56,7 +56,7 @@ export class InMemoryService implements InMemoryDbService {
         status: 'concluido', 
         priority: 'alta', 
         project: 'Task Manager', 
-        responsible: users[2], 
+        responsible: Array(users[2]), 
         deadline: new Date(2024, 8, 12, 12, 0, 0),
         finish_date: new Date(2024, 8, 11, 12, 0, 0) 
       },
@@ -67,7 +67,7 @@ export class InMemoryService implements InMemoryDbService {
         status: 'concluido', 
         priority: 'baixa', 
         project: 'Task Manager', 
-        responsible: users[0], 
+        responsible: Array(users[0], users[1]), 
         deadline: new Date(2024, 8, 12, 12, 0, 0),
         finish_date: new Date(2024, 8, 12, 12, 0, 0) 
       }, 
@@ -78,7 +78,7 @@ export class InMemoryService implements InMemoryDbService {
         status: 'em_progresso', 
         priority: 'alta', 
         project: 'Task Manager', 
-        responsible: users[0], 
+        responsible: Array(users[0]), 
         deadline: new Date(2024, 8, 13, 12, 0, 0)
       },
       { 
@@ -88,7 +88,7 @@ export class InMemoryService implements InMemoryDbService {
         status: 'pendente', 
         priority: 'baixa', 
         project: '', 
-        responsible: users[1], 
+        responsible: Array(users[1]), 
         deadline: new Date(2024, 8, 10, 12, 0, 0)
       },
     ]
