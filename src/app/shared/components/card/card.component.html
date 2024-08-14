@@ -1,17 +1,17 @@
 <!-- to do: skeleton para informações ainda não carregadas -->
 
 @if(cardDataEntrie) {
-  <p-card>
+  <div class="card-component">
     <div class="card-info">
-      <p class="title">
-        {{taskStatus[cardDataEntrie[0]]}}
-      </p>
       <p class="value">
         {{cardDataEntrie[1]}}
       </p>
+      <p class="title">
+        {{taskStatus[cardDataEntrie[0]]}}
+      </p>
     </div>
-    <div class="card-icon">
-      <fa-icon [icon]="taskIcons[cardDataEntrie[0]]"></fa-icon>
+    <div class="card-icon" [ngClass]="taskIcons[cardDataEntrie[0]].iconName">
+      <fa-icon [className]="taskIcons[cardDataEntrie[0]].iconName" [icon]="taskIcons[cardDataEntrie[0]]"></fa-icon>
     </div>
-  </p-card>
+  </div>
 }
