@@ -3,16 +3,14 @@ import { CardModule } from 'primeng/card';
 import { DashboardService } from '../../services/dashboard.service';
 import { cardData, DashboardData } from '../../shared/models';
 import { ToastrService } from 'ngx-toastr';
-import { taskIcons, taskStatus } from './constants';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { LineChartComponent } from '../../shared/components/line-chart/line-chart.component';
 import { CardComponent } from "../../shared/components/card/card.component";
-
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CardModule, FontAwesomeModule, LineChartComponent, CardComponent],
+  imports: [CardComponent, CardModule, FontAwesomeModule, LineChartComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })
@@ -30,6 +28,7 @@ export class DashboardComponent implements OnInit {
   });
 
   protected showLineChart: WritableSignal<boolean> = signal(false);
+  protected addIcon = faPlus;
 
   get cardEntries() {
     return Object.entries(this.dashboardData().cardData as cardData)
