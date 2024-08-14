@@ -20,6 +20,10 @@
       font-size: 12px;
       font-weight: 500;
       line-height: 38px;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+      max-width: 100px;
     }
   }
 
@@ -79,5 +83,13 @@
 
   .check {
     color: #4ad894;
+  }
+}
+
+@media(max-width: '710px') {
+  .card-info {
+    span {
+      display: none;
+    }
   }
 }
