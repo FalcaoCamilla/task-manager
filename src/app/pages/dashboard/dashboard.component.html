@@ -5,6 +5,7 @@
       <span>Bem vindo ao seu gestor de tarefas!</span>
     </div>
     <button>
+      <fa-icon [icon]="addIcon" [className]="addIcon.iconName"></fa-icon>
       Nova tarefa
     </button>
   </div>
@@ -16,8 +17,13 @@
   </div>
 
   <div class="div-chart">
-    @if(showLineChart()) {
-      <app-line-chart [chartData]="dashboardData().chartData"></app-line-chart>
-    }
+    <span># Tarefas concluídas por dia</span>
+    <div class="view-data">
+      @if(showLineChart()) {
+        <app-line-chart [chartData]="dashboardData().chartData"></app-line-chart>
+      } @else {
+        <span>Não há registros disponíveis</span>
+      }
+    </div>
   </div>
 </div>
