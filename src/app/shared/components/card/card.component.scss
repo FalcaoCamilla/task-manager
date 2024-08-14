@@ -1,9 +1,51 @@
-:host {
-  ::ng-deep {
-    .p-card-content {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+.card-component {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  padding: 1.5rem;
+  background: white;
+  border-radius: 10px;
+}
+
+.card-info {
+  font-weight: bold;
+
+  p {
+    margin: 0;
+
+    &.value {
+      font-size: 26px;
     }
+  }
+}
+
+.card-icon {
+  font-size: 22px;
+  padding: 10px 17px;
+  border-radius: 10px;
+
+  &.spinner {
+    background-color: #e9f7ff;
+  }
+
+  &.terminal {
+    background-color: #f1e6fc;
+  }
+
+  &.check {
+    background-color: #e9fff6;
+  }
+
+  .spinner {
+    color: #4aa4d8;
+  }
+
+  .terminal {
+    color: #dab5ff;
+  }
+
+  .check {
+    color: #4ad894;
   }
 }
