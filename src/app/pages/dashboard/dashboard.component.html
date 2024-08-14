@@ -4,7 +4,7 @@
       <span>Olá Neto,</span>
       <span>Bem vindo ao seu gestor de tarefas!</span>
     </div>
-    <button>
+    <button (click)="showModalNewTask = true">
       <fa-icon [icon]="addIcon" [className]="addIcon.iconName"></fa-icon>
       Nova tarefa
     </button>
@@ -29,3 +29,7 @@
     </div>
   </div>
 </div>
+
+@if(showModalNewTask) {
+  <app-modal-new-task (hideComponent)="showModalNewTask = false"/>
+}

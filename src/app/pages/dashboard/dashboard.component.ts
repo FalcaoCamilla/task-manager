@@ -7,10 +7,11 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { LineChartComponent } from '../../shared/components/line-chart/line-chart.component';
 import { CardComponent } from "../../shared/components/card/card.component";
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { ModalNewTaskComponent } from '../../shared/components/modal-new-task/modal-new-task.component';
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CardComponent, CardModule, FontAwesomeModule, LineChartComponent],
+  imports: [ModalNewTaskComponent, CardComponent, CardModule, FontAwesomeModule, LineChartComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })
@@ -29,6 +30,7 @@ export class DashboardComponent implements OnInit {
   protected overdueTasks: WritableSignal<number> = signal(0);
 
   protected showLineChart: WritableSignal<boolean> = signal(false);
+  protected showModalNewTask: boolean = false;
   protected addIcon = faPlus;
 
   get cardEntries() {
