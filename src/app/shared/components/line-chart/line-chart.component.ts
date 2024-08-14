@@ -50,9 +50,15 @@ export class LineChartComponent implements OnInit {
         labels: dates,
         datasets: [{
           data: numberOfTasksPerDate,
-          borderColor: 'rgba(75, 192, 192, 1)',
+          borderColor: '#4ad894',
+          borderWidth: 3,
           fill: false,
-          tension: 0.4
+          tension: 0.4,
+          pointRadius: 5,
+          pointHoverRadius: 7,
+          pointBackgroundColor: '#4ad894',
+          pointBorderColor: '#4ad894',
+          pointBorderWidth: 2
         }]
       },
       options: {
@@ -60,12 +66,22 @@ export class LineChartComponent implements OnInit {
           x: {
             title: {
               display: false
+            },
+            ticks: {
+              font: {
+                family: 'Poppins',
+                size: 13
+              }
             }
           },
           y: {
             beginAtZero: true,
             ticks: {
-              stepSize: 1
+              stepSize: 1,
+              font: {
+                family: 'Poppins',
+                size: 13
+              }
             },
             title: {
               display: false
@@ -85,7 +101,21 @@ export class LineChartComponent implements OnInit {
 
                 return tasks ? `${tasks.join(', ')}` : '';
               }
-            }
+            },
+            displayColors: false, //remoção do colorbox
+            backgroundColor: '#fff',
+            titleColor: '#2d383e',
+            bodyColor: '#2d383e',
+            bodyFont: {
+              family: 'Poppins',
+              size: 12,
+              wrap: 'wrap'
+            },
+            titleFont: {
+              family: 'Poppins',
+              size: 11,
+              weight: 500
+            },
           },
           datalabels: {
             display: false
