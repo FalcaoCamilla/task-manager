@@ -4,11 +4,11 @@
     (click)="expand()"
   >
     <div class="wrapper">
-      <div class="label-container">
-        <span>Navegação</span>
-      </div>
       <div class="icon-container">
         <fa-icon [icon]="faList"></fa-icon>
+      </div>
+      <div class="label-container">
+        <span>Navegação</span>
       </div>
     </div>
   </button>
@@ -17,15 +17,14 @@
     <ul class="list-unstyled">
       @for(item of menu; track $index) {
         <li class="item">
-          <button>
-            <a
-              [routerLink]="item.routerLink"
-              class="text-decoration-none"
-            >
-              <span>{{item.label}}</span>
-            </a>
-          </button>
-          <fa-icon [icon]="item.icon"></fa-icon>
+          <a
+            [routerLink]="item.routerLink"
+            [routerLinkActive]="['active']"
+            class="text-decoration-none"
+          >
+            <fa-icon [icon]="item.icon"></fa-icon>
+            <span>{{item.label}}</span>
+          </a>
         </li>
       }
     </ul>

@@ -12,8 +12,8 @@ import { faBarsStaggered, faList, faTableColumns } from '@fortawesome/free-solid
   styleUrl: './side-menu.component.scss'
 })
 export class SideMenuComponent {
-  expanded: boolean = true;
-  faList = faList;
+  protected expanded: boolean = true;
+  protected faList = faList;
 
   protected menu = [
     {
