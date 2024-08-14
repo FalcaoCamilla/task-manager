@@ -1,0 +1,77 @@
+<div class="task-container">
+  <div class="header">
+    <div>
+      <span>Tarefas</span>
+      <p-breadcrumb 
+        class="max-w-full" 
+        [model]="breadcrumbItems"
+      >
+        <ng-template pTemplate="item" let-item>
+          <a [routerLink]="item.routerLink" [class]="item.active ? 'active' : ''">
+            {{ item.label }}
+          </a>
+        </ng-template>
+      </p-breadcrumb>
+    </div>
+    <button (click)="showModalNewTask = true">
+      <fa-icon [icon]="addIcon" [className]="addIcon.iconName"></fa-icon>
+      Nova tarefa
+    </button>
+  </div>
+
+  <div class="div-table">
+    <div class="div-filter">
+
+    </div>
+    <p-table 
+      [value]="taskData" 
+      [tableStyle]="{ 'min-width': '50rem' }" 
+      [styleClass]="'p-datatable-lg'"
+    >
+      <ng-template #sortIcon>
+        <i class="pi pi-sort"></i>
+      </ng-template>
+      <div [innerHtml]="sortIcon"></div>
+      <ng-template pTemplate="header">
+          <tr>
+              <th pSortableColumn="name">
+                Tarefa 
+                <p-sortIcon field="name" *ngTemplateOutlet="sortIcon"/>
+              </th>
+              <th pSortableColumn="priority">
+                Prior.
+                <p-sortIcon field="priority" *ngTemplateOutlet="sortIcon"/>
+              </th>
+              <th pSortableColumn="project">
+                Projeto
+                <p-sortIcon field="project" *ngTemplateOutlet="sortIcon"/>
+              </th>
+              <th pSortableColumn="status">
+                Status
+                <p-sortIcon field="status" *ngTemplateOutlet="sortIcon"/>
+              </th>
+              <th pSortableColumn="responsible">
+                Respons.
+                <p-sortIcon field="responsible" *ngTemplateOutlet="sortIcon"/>
+              </th>
+              <th pSortableColumn="deadline">
+                Deadline
+                <p-sortIcon field="deadline" *ngTemplateOutlet="sortIcon"/>
+              </th>
+              <th></th>
+          </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-task>
+          <tr>
+              <td class="text-decoration">{{ task.name }}</td>
+              <td>{{ priority[task.priority] }}</td>
+              <td class="text-decoration">{{ task.project }}</td>
+              <td>{{ status[task.status] }}</td>
+              <td>{{ task.responsible | userArrayFormatter }}</td>
+              <td>{{ task.deadline | date:'EE dd MMM' }}</td>
+              <td>icons</td>
+          </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>
