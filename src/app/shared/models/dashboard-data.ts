@@ -6,7 +6,8 @@ export type DashboardData = {
 export type cardData = {
   total_pendentes: number,
   total_progresso: number,
-  total_concluidas: number
+  total_concluidas: number,
+  total_atraso?: number
 }
 
 export type chartData = {
