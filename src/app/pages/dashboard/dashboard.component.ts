@@ -26,42 +26,25 @@ export class DashboardComponent implements OnInit {
       total_progresso: 0
     }
   });
+  protected overdueTasks: WritableSignal<number> = signal(0);
 
   protected showLineChart: WritableSignal<boolean> = signal(false);
   protected addIcon = faPlus;
 
   get cardEntries() {
-    return Object.entries(this.dashboardData().cardData as cardData)
+    const cardDataWithoutAtraso: Partial<cardData> = { ...this.dashboardData().cardData };
+    delete cardDataWithoutAtraso.total_atraso;
+    return Object.entries(cardDataWithoutAtraso as cardData);
   }
 
   ngOnInit(): void {
     this._dashboardservice.getDashboardData().subscribe({
       next: (data) => {
         this.dashboardData.set(data);
+        this.overdueTasks.set(data.cardData.total_atraso || 0);
         this.showLineChart.set(true)
       },
       error: () => this._toastr.error('Falha na requisição')
     })
   }
-
-  // private filterTasksByDate(finishDate: Date | null | undefined, filter: 'last15' | 'last30' | 'today', today: Date): boolean {
-  //   if (!finishDate) {
-  //     return false;
-  //   }
-  
-  //   const finishDateObject = new Date(finishDate);
-  
-  //   switch (filter) {
-  //     case 'last15':
-  //       return finishDateObject >= new Date(today.setDate(today.getDate() - 15));
-  //     case 'last30':
-  //       return finishDateObject >= new Date(today.setDate(today.getDate() - 30));
-  //     case 'today':
-  //       return finishDateObject.getFullYear() === today.getFullYear() &&
-  //              finishDateObject.getMonth() === today.getMonth() &&
-  //              finishDateObject.getDate() === today.getDate();
-  //   }
-  
-  //   return false;
-  // }
 }

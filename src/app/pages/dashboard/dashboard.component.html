@@ -10,11 +10,13 @@
     </button>
   </div>
   
-  <div class="div-cards">
-    @for(card of cardEntries; track $index) {
-      <app-card [cardDataEntrie]="card"/>
-    }
-  </div>
+  @if(cardEntries) {
+    <div class="div-cards">
+      @for(card of cardEntries; track $index) {
+        <app-card [cardDataEntrie]="card" [overdueTasks]="overdueTasks()"/>
+      }
+    </div>
+  }
 
   <div class="div-chart">
     <span># Tarefas concluídas por dia</span>
