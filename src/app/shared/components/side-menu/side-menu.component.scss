@@ -4,6 +4,10 @@
       color: #fff;
     }
   }
+
+  span {
+    font-size: 14px;
+  }
 }
 
 aside {
@@ -32,7 +36,7 @@ aside {
   }
 
   &.expanded {
-    width: 203px;
+    width: 240px;
 
     button {
       .wrapper {
@@ -100,12 +104,6 @@ aside {
       flex-wrap: nowrap;
       overflow: hidden;
 
-      .label-container {
-        span {
-          margin-left: 24px;
-        }
-      }
-
       span, .label-container {
         width: 0;
         overflow: hidden;
@@ -124,23 +122,24 @@ aside {
   .item {
     border: none;
     border-radius: 0;
-    padding: 0px 8px;
+    margin-bottom: 5px;
     display: flex;
     align-items: center;
     flex-direction: row-reverse;
 
-    button { 
-      a {
-        text-decoration: none;
-        color: #fff;
-      }
-
-      &:hover {
-        background: #8887c4
-      }
+    a { 
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+      padding: 15px 25px;
+      text-decoration: none;
+      color: #fff;
+      border-radius: 8px;
+      cursor: pointer;
     }
 
-    &:active, &:hover {
+    &:hover, .active {
       cursor: pointer;
       border-radius: 8px;
       background-color: #8887c4;
