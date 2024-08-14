@@ -8,7 +8,9 @@
           {{cardDataEntrie[1]}}
         </p>
         @if(overdueTasks && taskStatus[cardDataEntrie[0]] == 'doing') {
-          <span>{{overdueTasks}} tarefa{{overdueTasks > 1 ? 's' : ''}} em atraso!</span>
+          <div class="div-overdue">
+            <span>{{overdueTasks}} tarefa{{overdueTasks > 1 ? 's' : ''}} em atraso!</span>
+          </div>
         }
       </div>
       <p class="title">
