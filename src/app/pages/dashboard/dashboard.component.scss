@@ -3,13 +3,13 @@
 }
 
 .dashboard-container {
-  // display: grid;
-  // grid-template-rows: 15% 25% 60%;
   height: 100%;
   padding: 40px 30px;
 
   .header {
     display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
     justify-content: space-between;
     margin-bottom: 20px;
     align-items: center;
@@ -62,8 +62,15 @@
 
   .view-data {
     min-height: 100%;
+    width: 100%;
     background: #fff;
     padding: 20px;
     border-radius: 10px;
+  }
+}
+
+@media(max-width: '710px') {
+  .div-cards {
+    grid-template-columns: 1fr !important;
   }
 }
