@@ -11,11 +11,23 @@ export class DashboardService {
   protected http = inject(HttpClient);
 
   getDashboardData(): Observable<DashboardData> {
+    const currentDate = new Date().toLocaleDateString('pt-BR');
+
+    /* visualização de tarefas atrasadas mediante status "em progresso". 
+     * atualizar para considerar task.status !== 'concluida'
+     */
     return this.http.get<Task[]>('/api/tasks').pipe(
       map(tasks => {
+        const tarefasEmProgresso = tasks.filter(task => task.status === 'em_progresso');
+        const tarefasAtrasadas = tarefasEmProgresso.filter(task => {
+          const deadlineDate = new Date(task.deadline).toLocaleDateString('pt-BR');
+          return deadlineDate < currentDate;
+        });
+
         const cardData: cardData = {
           total_pendentes: tasks.filter(task => task.status === 'pendente').length,
-          total_progresso: tasks.filter(task => task.status === 'em_progresso').length,
+          total_progresso: tarefasEmProgresso.length,
+          total_atraso: tarefasAtrasadas.length,
           total_concluidas: tasks.filter(task => task.status === 'concluido').length
         };
 
