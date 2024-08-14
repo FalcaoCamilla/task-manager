@@ -119,14 +119,14 @@
 
     .priority, .status {
       span {
-        display: flex;
-        justify-content: center;
         min-width: 40px;
+        display: block;
+        text-align: center;
         padding: 5px;
         border-radius: 8px;
         font-size: 14px;
         overflow: hidden;
-        text-overflow: ellipsis; //to do
+        text-overflow: ellipsis;
         white-space: nowrap;
         color: #fff;
 
