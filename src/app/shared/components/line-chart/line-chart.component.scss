@@ -1,0 +1,22 @@
+:host {
+  ::ng-deep {
+    p-chart {
+      &.p-element {
+        div {
+          height: 265px !important;
+        }
+      }
+    }
+
+    p-dropdown {
+      display: flex;
+      justify-content: flex-end;
+      margin-right: 18px;
+
+      .p-dropdown-trigger-icon {
+        font-size: 18px;
+        color: #263238;
+      }
+    }
+  }
+}
