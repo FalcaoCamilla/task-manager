@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { Task, cardData, chartData, DashboardData } from '../shared/models';
+import { Task, cardData, chartData, DashboardData, User } from '../shared/models';
 import { map, Observable } from 'rxjs'
 import { FormatDate } from '../shared/utils';
 
@@ -41,5 +41,9 @@ export class DashboardService {
         return { cardData, chartData } as DashboardData;
       })
     );
+  }
+
+  getUsers(): Observable<User[]> {
+    return this.http.get<User[]>('/api/users')
   }
 }
