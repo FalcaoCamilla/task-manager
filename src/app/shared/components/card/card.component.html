@@ -3,9 +3,14 @@
 @if(cardDataEntrie) {
   <div class="card-component">
     <div class="card-info">
-      <p class="value">
-        {{cardDataEntrie[1]}}
-      </p>
+      <div>
+        <p class="value" [ngClass]="{'with-badge' : overdueTasks && taskStatus[cardDataEntrie[0]] == 'doing'}">
+          {{cardDataEntrie[1]}}
+        </p>
+        @if(overdueTasks && taskStatus[cardDataEntrie[0]] == 'doing') {
+          <span>{{overdueTasks}} tarefa{{overdueTasks > 1 ? 's' : ''}} em atraso!</span>
+        }
+      </div>
       <p class="title">
         {{taskStatus[cardDataEntrie[0]]}}
       </p>
