@@ -1,0 +1,29 @@
+@import '../../../assets/vars.scss';
+
+.login {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+form {
+  padding: 20px 0px 10px 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+button {
+  width: 20%;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  background: $purple-200;
+  color: $white;
+  cursor: pointer;
+}
