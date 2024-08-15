@@ -18,7 +18,13 @@
       </div>
 
       <div class="margin-bottom">
-        <textarea pInputTextarea formControlName="description" placeholder="Detalhes da tarefa"></textarea>
+        <textarea 
+          pInputTextarea 
+          formControlName="description" 
+          placeholder="Detalhes da tarefa"
+          [ngClass]="{'invalid' : newTaskForm.controls['description'].touched && newTaskForm.controls['description'].dirty && !newTaskForm.controls['description'].value}"
+        >
+        </textarea>
       </div>
 
       <div class="margin-bottom">
@@ -31,6 +37,7 @@
             [appendTo]="'body'"
             [iconDisplay]="'input'" 
             [showIcon]="true" 
+            dateFormat="dd/mm/yy"
           />
 
           <p-dropdown 
@@ -47,9 +54,9 @@
       <div class="margin-bottom">
         <p-dropdown 
           optionLabel="name"
-          optionValue="id"
           placeholder="Responsáveis"
-          formControlName="priority"
+          formControlName="responsibility"
+          [ngClass]="{'invalid' : newTaskForm.controls['responsibility'].touched && newTaskForm.controls['responsibility'].dirty && !newTaskForm.controls['responsibility'].value}"
           [options]="users" 
           [dropdownIcon]="'pi pi-search'"
         >
@@ -65,7 +72,7 @@
 
     <div class="div-submit">
         <button label="Cancelar" (onClick)="onHide()">Cancelar</button>
-        <button>
+        <button (click)="criarTarefa()">
           <fa-icon [icon]="addIcon" [className]="addIcon.iconName"></fa-icon>
           Criar tarefa
         </button>

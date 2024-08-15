@@ -26,6 +26,18 @@
     .p-inputtext:enabled:focus {
       box-shadow: none;
     }
+
+    p-dropdown.ng-dirty.ng-invalid > .p-dropdown {
+      border-color: #e24c4c !important;
+
+      .p-dropdown-label.p-placeholder {
+        color: #e24c4c !important;
+      }
+    }
+
+    .p-inputtext.ng-dirty.ng-invalid {
+      border-color: #e24c4c !important;
+    }
   }
 }
 
@@ -38,13 +50,20 @@ form {
 
   textarea {
     font-size: 1rem;
-    color: $font-th-color;
+    color: $font-color;
     background: $white;
     padding: 0.75rem;
     border: 1px solid $border-color;
     border-radius: 6px;
     width: 100%;
     height: 140px;
+
+    &.invalid {
+      border-color: #e24c4c !important;
+      &::placeholder {
+        color: $invalid-color
+      }
+    }
   }
 
   .dropdown-group {

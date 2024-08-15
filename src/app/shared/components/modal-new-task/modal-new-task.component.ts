@@ -9,18 +9,21 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormControl, FormGroup, FormsModule, Validators } from '@angular/forms';
 import { faPlus, faUpload } from '@fortawesome/free-solid-svg-icons';
 import { ReactiveFormsModule } from '@angular/forms';
-import { SelectData, Task, User } from '../../models';
+import { SelectData, User } from '../../models';
 import { DashboardService } from '../../../services/dashboard.service';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
+import { markAllAsDirty } from '../../utils';
 
 @Component({
   selector: 'app-modal-new-task',
   standalone: true,
-  imports: [ CommonModule, DialogModule, DropdownModule, CalendarModule, InputTextModule, FloatLabelModule, FontAwesomeModule, FormsModule, ReactiveFormsModule ],
+  imports: [ CommonModule, DialogModule, DropdownModule, CalendarModule, InputTextModule, FloatLabelModule, FontAwesomeModule, FormsModule, ReactiveFormsModule, ToastrModule ],
   templateUrl: './modal-new-task.component.html',
   styleUrl: './modal-new-task.component.scss'
 })
 export class ModalNewTaskComponent implements OnInit {
   private _dashboardservice = inject(DashboardService);
+  private _toastr = inject(ToastrService);
 
   @Output() hideComponent = new EventEmitter<boolean>();
   protected addIcon = faPlus;
@@ -47,6 +50,14 @@ export class ModalNewTaskComponent implements OnInit {
     this._dashboardservice.getUsers().subscribe({
       next: (data) => this.users = data
     })
+  }
+
+  protected criarTarefa() {
+    if(this.newTaskForm.invalid) {
+      markAllAsDirty(this.newTaskForm);
+      this._toastr.error('Dados inválidos')
+    }
+    console.log(this.newTaskForm.getRawValue())
   }
 
   protected onHide() {
