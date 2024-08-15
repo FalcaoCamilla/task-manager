@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { SelectData, Task } from '../shared/models';
+import { SelectData, Task, User } from '../shared/models';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +11,10 @@ export class TaksService {
 
   getTasks(): Observable<Task[]> {
     return this.http.get<Task[]>('/api/tasks')
+  }
+
+  getUsers(): Observable<User[]> {
+    return this.http.get<User[]>('/api/users')
   }
 
   getProjects(): Observable<SelectData[]> {
@@ -24,5 +28,10 @@ export class TaksService {
           }));
         })
       );
+  }
+
+
+  createTask(task: Partial<Task>): Observable<any> {
+    return this.http.post('/api/tasks', task)
   }
 }
