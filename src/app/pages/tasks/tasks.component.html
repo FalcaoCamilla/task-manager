@@ -142,3 +142,7 @@
     </p-table>
   </div>
 </div>
+
+@if(showModalNewTask) {
+  <app-modal-new-task (hideComponent)="showModalNewTask = false" (updateTasks)="getTasks()"/>
+}

@@ -10,11 +10,12 @@ import { filterTask, priority, SelectData, status, Task } from '../../shared/mod
 import { TaksService } from '../../services/tasks.service';
 import { userArrayFormatterPipe } from "../../shared/directives/user-array-formatter.pipe";
 import { FormsModule } from '@angular/forms';
+import { ModalNewTaskComponent } from '../../shared/components/modal-new-task/modal-new-task.component';
 
 @Component({
   selector: 'app-tasks',
   standalone: true,
-  imports: [BreadcrumbModule, CommonModule, DropdownModule, FontAwesomeModule, FormsModule, TableModule, userArrayFormatterPipe],
+  imports: [BreadcrumbModule, CommonModule, DropdownModule, FontAwesomeModule, FormsModule, ModalNewTaskComponent, TableModule, userArrayFormatterPipe],
   templateUrl: './tasks.component.html',
   styleUrl: './tasks.component.scss'
 })
@@ -67,11 +68,11 @@ export class TasksComponent implements OnInit {
   protected taskData: Task[] = [];
 
   ngOnInit(): void {
-    this._getTasks();
+    this.getTasks();
     this._setProjectsOptions();
   }
 
-  private _getTasks() {
+  protected getTasks() {
     this._taskService.getTasks().subscribe({
       next: (data) => this.taskData = data
     })
