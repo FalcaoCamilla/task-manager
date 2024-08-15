@@ -122,6 +122,10 @@ aside {
     height: 60px;
     background-color: $purple-300;
     color: $white;
+
+    &.logout {
+      margin-top: auto;
+    }
   }
 
   .item {
