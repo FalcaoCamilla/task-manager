@@ -45,6 +45,22 @@ export class LineChartComponent implements OnInit {
 
     const numberOfTasksPerDate = dates.map(date => groupedData[date].length);
 
+    const shadowPlugin = {
+      beforeDraw: (chart: any) => {
+        const ctx = chart.ctx;
+        const _stroke = ctx.stroke;
+        ctx.stroke = function() {
+          ctx.save();
+          ctx.shadowColor = 'rgba(74, 216, 148, 0.4)'; 
+          ctx.shadowBlur = 12; 
+          ctx.shadowOffsetX = 0; 
+          ctx.shadowOffsetY = 8; 
+          _stroke.apply(this, arguments as any);
+          ctx.restore();
+        };
+      }
+    };
+
     this.data = {
       data: {
         labels: dates,
@@ -72,7 +88,10 @@ export class LineChartComponent implements OnInit {
                 family: 'Poppins',
                 size: 13
               }
-            }
+            },
+            grid: {
+              display: false
+            },
           },
           y: {
             beginAtZero: true,
@@ -122,7 +141,7 @@ export class LineChartComponent implements OnInit {
           }
         }
       },
-      plugins: [ChartDataLabels]
+      plugins: [ChartDataLabels, shadowPlugin]
     };
   }
 }
