@@ -1,0 +1,32 @@
+<div class="login">
+  <form [formGroup]="formLogin">
+    <div class="margin-bottom">
+      <p-floatLabel>
+        <input pInputText formControlName="username"/>
+        <label>Username</label>
+      </p-floatLabel>  
+    </div>
+    @if(isRegister()) {
+      <div class="margin-bottom">
+        <p-floatLabel>
+          <input pInputText formControlName="email"/>
+          <label>Email</label>
+        </p-floatLabel>  
+      </div>
+    }
+    <div class="margin-bottom">
+      <p-floatLabel>
+        <input pInputText formControlName="password"/>
+        <label>Password</label>
+      </p-floatLabel>  
+    </div>
+  </form>
+
+  <button (click)="isRegister() ? register() : login()">{{isRegister() ? 'Cadastrar' : 'Entrar'}}</button>
+
+  @if(!isRegister()) {
+    <small class="label-register" (click)="isRegister.set(true)">Cadastre seu usuário aqui</small>
+  } @else {
+    <button class="back-btn" (click)="isRegister.set(false)">Voltar</button>
+  }
+</div>
