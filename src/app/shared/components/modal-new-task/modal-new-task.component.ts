@@ -10,9 +10,9 @@ import { FormControl, FormGroup, FormsModule, Validators } from '@angular/forms'
 import { faPlus, faUpload } from '@fortawesome/free-solid-svg-icons';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SelectData, User } from '../../models';
-import { DashboardService } from '../../../services/dashboard.service';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { markAllAsDirty } from '../../utils';
+import { TaksService } from '../../../services/tasks.service';
 
 @Component({
   selector: 'app-modal-new-task',
@@ -22,32 +22,34 @@ import { markAllAsDirty } from '../../utils';
   styleUrl: './modal-new-task.component.scss'
 })
 export class ModalNewTaskComponent implements OnInit {
-  private _dashboardservice = inject(DashboardService);
+  private _taskService = inject(TaksService);
   private _toastr = inject(ToastrService);
 
   @Output() hideComponent = new EventEmitter<boolean>();
+  @Output() updateTasks = new EventEmitter<boolean>();
   protected addIcon = faPlus;
   protected iconFile = faUpload;
   protected visible: boolean = true;
 
-  protected priority: SelectData[] = [
-    {id: 1, text: 'Alta'},
-    {id: 2, text: 'Média'},
-    {id: 3, text: 'Baixa'},
+  protected priority: Array<SelectData & {value: string}> = [
+    {id: 1, text: 'Alta', value: 'alta'},
+    {id: 2, text: 'Média', value: 'media'},
+    {id: 3, text: 'Baixa', value: 'baixa'},
   ];
   protected users: User[] = [];
 
+  //project
   protected newTaskForm: FormGroup = new FormGroup({
-    title: new FormControl(null, Validators.required),
+    name: new FormControl(null, Validators.required),
     description: new FormControl(null, Validators.required),
     deadline: new FormControl(null),
     priority: new FormControl(null),
-    responsibility: new FormControl(null, Validators.required),
+    responsible: new FormControl(null, Validators.required),
     file: new FormControl(null),
   })
 
   ngOnInit(): void {
-    this._dashboardservice.getUsers().subscribe({
+    this._taskService.getUsers().subscribe({
       next: (data) => this.users = data
     })
   }
@@ -55,9 +57,25 @@ export class ModalNewTaskComponent implements OnInit {
   protected criarTarefa() {
     if(this.newTaskForm.invalid) {
       markAllAsDirty(this.newTaskForm);
-      this._toastr.error('Dados inválidos')
+      this._toastr.error('Dados inválidos');
+      return
     }
-    console.log(this.newTaskForm.getRawValue())
+
+    const formValue = this.newTaskForm.getRawValue();
+    const form = {
+      ...formValue,
+      responsible: Array(this.newTaskForm.controls['responsible'].value),
+      status: 'pendente'
+    }
+
+    this._taskService.createTask(form).subscribe({
+      next: () => {
+        this.updateTasks.emit(true);
+        this.onHide();
+        this._toastr.success('Tarefa cadastrada com sucesso');
+      },
+      error: () => this._toastr.error('Não foi possível cadastrar a tarefa')
+    })
   }
 
   protected onHide() {

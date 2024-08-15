@@ -12,7 +12,7 @@
     <form [formGroup]="newTaskForm">
       <div class="margin-bottom">
         <p-floatLabel>
-          <input pInputText id="title" formControlName="title" class="title"/>
+          <input pInputText id="title" formControlName="name" class="title"/>
           <label for="title">Título da tarefa</label>
         </p-floatLabel>  
       </div>
@@ -42,7 +42,7 @@
 
           <p-dropdown 
             optionLabel="text"
-            optionValue="id"
+            optionValue="value"
             placeholder="Prioridade"
             formControlName="priority"
             [options]="priority" 
@@ -55,8 +55,8 @@
         <p-dropdown 
           optionLabel="name"
           placeholder="Responsáveis"
-          formControlName="responsibility"
-          [ngClass]="{'invalid' : newTaskForm.controls['responsibility'].touched && newTaskForm.controls['responsibility'].dirty && !newTaskForm.controls['responsibility'].value}"
+          formControlName="responsible"
+          [ngClass]="{'invalid' : newTaskForm.controls['responsible'].touched && newTaskForm.controls['responsible'].dirty && !newTaskForm.controls['responsible'].value}"
           [options]="users" 
           [dropdownIcon]="'pi pi-search'"
         >
