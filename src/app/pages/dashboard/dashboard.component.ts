@@ -40,6 +40,10 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getDashboardData();
+  }
+
+  protected getDashboardData() {
     this._dashboardservice.getDashboardData().subscribe({
       next: (data) => {
         this.dashboardData.set(data);
