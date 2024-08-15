@@ -1,0 +1,49 @@
+@import '../../../assets/vars.scss';
+
+.container {
+  display: flex;
+  min-height: 100%;
+
+  main {
+    display: flex;
+    height: 100%;
+
+    header {
+      display: flex;
+      align-items: center;
+      background: $white;
+
+      img {
+        border-radius: 10px;
+        margin-right: 15px;
+      }
+    }
+  }
+
+  .search {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 60px;
+    background-color: $white;
+  }
+}
+
+app-side-menu {
+  background-color: $purple-200;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: $bg-light;
+}
+
+@media (max-width: 768px) {
+  app-side-menu {
+    width: 200px;
+  }
+}
