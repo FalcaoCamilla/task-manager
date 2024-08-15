@@ -1,3 +1,5 @@
+@import '../../../../assets/vars.scss';
+
 :host {
   ::ng-deep {
     .dialog-content {
@@ -18,7 +20,7 @@
     }
 
     .p-inputtext, .p-dropdown {
-      border: 1px solid #eef2f4;
+      border: 1px solid $border-color;
     }
 
     .p-inputtext:enabled:focus {
@@ -36,10 +38,10 @@ form {
 
   textarea {
     font-size: 1rem;
-    color: #4b5563;
-    background: #ffffff;
+    color: $font-th-color;
+    background: $white;
     padding: 0.75rem;
-    border: 1px solid #eef2f4;
+    border: 1px solid $border-color;
     border-radius: 6px;
     width: 100%;
     height: 140px;
@@ -57,8 +59,8 @@ form {
     align-items: center;
     justify-content: center;
     height: 115px;
-    background-color: #f6f8f9;
-    border: 1px solid #eef2f4;
+    background-color: $upload-file-bg;
+    border: 1px solid $border-color;
     border-radius: 7px;
     cursor: pointer;
 
@@ -93,16 +95,16 @@ form {
   }
 
   button:first-of-type {
-    background-color: #f1e6fc;
-    color: #263238;
+    background-color: $bg-terminal;
+    color: $font-color;
   }
 
   button:last-of-type {
-    background-color: #6261b4;
-    color: #fff;
+    background-color: $purple-200;
+    color: $white;
   
     .plus {
-      border: 2px solid #fff;
+      border: 2px solid $white;
       padding: 0px 4px;
       border-radius: 8px;
       margin-right: 5px;

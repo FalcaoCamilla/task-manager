@@ -1,3 +1,5 @@
+@import '../../../../assets/vars.scss';
+
 :host {
   ::ng-deep {
     p-chart {
@@ -15,7 +17,7 @@
 
       .p-dropdown-trigger-icon {
         font-size: 18px;
-        color: #263238;
+        color: $font-color;
       }
     }
   }

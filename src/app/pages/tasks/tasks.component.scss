@@ -1,5 +1,7 @@
+@import '../../../assets/vars.scss';
+
 :host {
-  color: #263238;
+  color: $font-color;
 
   ::ng-deep {
     .p-breadcrumb {
@@ -13,7 +15,7 @@
       .p-menuitem-link {
         a {
           text-decoration: none;
-          color: #263238;
+          color: $font-color;
         }
       }
 
@@ -21,14 +23,14 @@
         a {
           text-decoration: none;
           font-weight: 500;
-          color: #6261b4;    
+          color: $purple-200;    
         }
       }
     }
 
     .p-datatable .p-datatable-thead > tr > th {
       font-size: 15px;
-      color: #797b7c;
+      color: $font-th-color;
       background-color: transparent;
       border-width: 0 0 3px 0;
 
@@ -52,10 +54,10 @@
     }
 
     .ng-fa-icon {
-      color: #263238;
+      color: $font-color;
       cursor: pointer;
       .fa-trash-can {
-        color: #ff1414;
+        color: $red;
       }
     }
   }
@@ -90,12 +92,12 @@
       border-radius: 8px;
       font-size: 16px;
       font-weight: 600;
-      background: #6261b4;
-      color: #fff;
+      background: $purple-200;
+      color: $white;
       cursor: pointer;
 
       .plus {
-        border: 2px solid #fff;
+        border: 2px solid $white;
         padding: 0px 4px;
         border-radius: 8px;
         margin-right: 5px;
@@ -104,7 +106,7 @@
   }
 
   .div-table {
-    background-color: #fff;
+    background-color: $white;
     padding: 30px 20px;
     border-radius: 8px;
     height: 100%;
@@ -131,22 +133,22 @@
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
-        color: #fff;
+        color: $white;
 
         &.alta {
-          background-color: #ff1414;
+          background-color: $tag-danger;
         }
 
         &.media, &.em_progresso {
-          background-color: #ffa16c;
+          background-color: $tag-warning;
         }
 
         &.baixa, &.pendente {
-          background-color: #14b9ff;
+          background-color: $tag-info;
         }
 
         &.concluido {
-          background-color: #4ad894;
+          background-color: $tag-success;
         }
       }
     }

@@ -1,6 +1,7 @@
+@import '../assets/vars.scss';
+
 .container {
   display: flex;
-  // grid-template-columns: 20% 80%;
   min-height: 100%;
 
   main {
@@ -10,14 +11,13 @@
     header {
       display: flex;
       align-items: center;
-      background: #fff;
+      background: $white;
 
       img {
         border-radius: 10px;
         margin-right: 15px;
       }
     }
-    // grid-template-rows: 8% 92%;
   }
 
   .search {
@@ -25,12 +25,12 @@
     align-items: center;
     width: 100%;
     height: 60px;
-    background-color: #fff;
+    background-color: $white;
   }
 }
 
 app-side-menu {
-  background-color: #6261b4;
+  background-color: $purple-200;
   display: flex;
   flex-direction: column;
 }
@@ -39,7 +39,7 @@ main {
   width: 100%;
   display: flex;
   flex-direction: column;
-  background-color: #f5f5f5;
+  background-color: $bg-light;
 }
 
 @media (max-width: 768px) {

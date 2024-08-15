@@ -1,5 +1,7 @@
+@import '../../../assets/vars.scss';
+
 :host {
-  color: #263238;
+  color: $font-color;
 }
 
 .dashboard-container {
@@ -31,12 +33,12 @@
       border-radius: 8px;
       font-size: 16px;
       font-weight: 600;
-      background: #6261b4;
-      color: #fff;
+      background: $purple-200;
+      color: $white;
       cursor: pointer;
 
       .plus {
-        border: 2px solid #fff;
+        border: 2px solid $white;
         padding: 0px 4px;
         border-radius: 8px;
         margin-right: 5px;
@@ -63,7 +65,7 @@
   .view-data {
     min-height: 100%;
     width: 100%;
-    background: #fff;
+    background: $white;
     padding: 20px;
     border-radius: 10px;
   }

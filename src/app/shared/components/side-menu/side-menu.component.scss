@@ -1,7 +1,9 @@
+@import '../../../../assets/vars.scss';
+
 :host {
   ::ng-deep {
     .ng-fa-icon {
-      color: #fff;
+      color: $white;
       font-size: 18px;
     }
   }
@@ -75,7 +77,7 @@ aside {
     width: 100%;
     align-items: center;
     justify-content: flex-start;
-    background-color: #6261b4;
+    background-color: $purple-200;
 
     .icon-container {
       width: 25px;
@@ -116,9 +118,10 @@ aside {
   }
 
   .toggler {
+    cursor: pointer;
     height: 60px;
-    background-color: #5554aa;
-    color: #fff;
+    background-color: $purple-300;
+    color: $white;
   }
 
   .item {
@@ -136,7 +139,7 @@ aside {
       width: 100%;
       padding: 15px 25px;
       text-decoration: none;
-      color: #fff;
+      color: $white;
       border-radius: 8px;
       cursor: pointer;
     }
@@ -144,7 +147,7 @@ aside {
     &:hover, .active {
       cursor: pointer;
       border-radius: 8px;
-      background-color: #8887c4;
+      background-color: $purple-150;
     }
   }
 

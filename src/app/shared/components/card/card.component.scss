@@ -1,10 +1,12 @@
+@import '../../../../assets/vars.scss';
+
 .card-component {
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: 100%;
   padding: 1.5rem;
-  background: white;
+  background: $white;
   border-radius: 10px;
 }
 
@@ -47,7 +49,7 @@
       right: 7px;
       width: 7px;
       height: 7px;
-      background-color: red;
+      background-color: $red;
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -62,27 +64,27 @@
   border-radius: 10px;
 
   &.spinner {
-    background-color: #e9f7ff;
+    background-color: $bg-spinner;
   }
 
   &.terminal {
-    background-color: #f1e6fc;
+    background-color: $bg-terminal;
   }
 
   &.check {
-    background-color: #e9fff6;
+    background-color: $bg-check;
   }
 
   .spinner {
-    color: #4aa4d8;
+    color: $icon-spinner;
   }
 
   .terminal {
-    color: #dab5ff;
+    color: $icon-terminal;
   }
 
   .check {
-    color: #4ad894;
+    color: $icon-check;
   }
 }
 
