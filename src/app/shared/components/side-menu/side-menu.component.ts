@@ -2,8 +2,9 @@ import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faBarsStaggered, faList, faTableColumns } from '@fortawesome/free-solid-svg-icons';
+import { faArrowRightToBracket, faBarsStaggered, faList, faTableColumns } from '@fortawesome/free-solid-svg-icons';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { LoginService } from '../../../services/login.service';
 
 @Component({
   selector: 'app-side-menu',
@@ -13,9 +14,12 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
   styleUrl: './side-menu.component.scss'
 })
 export class SideMenuComponent {
+  protected loginService = inject(LoginService);
+
   protected expanded: boolean = true;
   protected isLargeScreen: boolean = false;
   protected faList = faList;
+  protected faArrow = faArrowRightToBracket;
 
   protected menu = [
     {
@@ -39,5 +43,9 @@ export class SideMenuComponent {
 
   protected expand() {
     this.expanded = !this.expanded
+  }
+
+  protected logout() {
+    this.loginService.logout()
   }
 }

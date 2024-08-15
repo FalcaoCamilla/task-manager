@@ -29,4 +29,18 @@
       }
     </ul>
   </nav>
+
+  <button
+    class="toggler logout"
+    (click)="logout()"
+  >
+    <div class="wrapper">
+      <div class="icon-container">
+        <fa-icon [icon]="faArrow"></fa-icon>
+      </div>
+      <div class="label-container">
+        <span>Sair</span>
+      </div>
+    </div>
+  </button>
 </aside>
