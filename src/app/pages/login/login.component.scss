@@ -1,5 +1,23 @@
 @import '../../../assets/vars.scss';
 
+:host {
+  ::ng-deep {
+    .p-float-label {
+      label {
+        font-size: 14px;
+      }
+    }
+
+    .p-password {
+      min-width: 275px;
+
+      .p-password-input {
+        width: 100%;
+      }
+    }
+  }
+}
+
 .login {
   width: 100%;
   height: 100%;
@@ -7,17 +25,50 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: $bg-light;
+
+  .form-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px;
+    background-color: $white;
+    border-radius: 8px;
+    box-shadow: 0 0 8px $box-shadow;
+
+    small {
+      color: $purple-150;
+      cursor: pointer;
+
+      &:hover {
+        color: $purple-300
+      }
+    }
+
+    .btn-group {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      width: 80%;
+
+      .back-btn {
+        background-color: $box-shadow;
+        color: $font-color;
+      }
+    }
+  }
 }
 
 form {
-  padding: 20px 0px 10px 0px;
+  padding-top: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 button {
-  width: 20%;
+  width: 60%;
   padding: 10px;
   border: none;
   border-radius: 8px;
