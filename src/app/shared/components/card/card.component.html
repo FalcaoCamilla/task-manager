@@ -1,24 +1,24 @@
 <!-- to do: skeleton para informações ainda não carregadas -->
 
-@if(cardDataEntrie) {
+@if(cardDataEntrie()) {
   <div class="card-component">
     <div class="card-info">
       <div>
-        <p class="value" [ngClass]="{'with-badge' : overdueTasks && taskStatus[cardDataEntrie[0]] == 'doing'}">
-          {{cardDataEntrie[1]}}
+        <p class="value" [ngClass]="{'with-badge' : overdueTasks() && taskStatus[cardDataEntrie()[0]] == 'doing'}">
+          {{cardDataEntrie()[1]}}
         </p>
-        @if(overdueTasks && taskStatus[cardDataEntrie[0]] == 'doing') {
+        @if(overdueTasks() && taskStatus[cardDataEntrie()[0]] == 'doing') {
           <div class="div-overdue">
-            <span>{{overdueTasks}} tarefa{{overdueTasks > 1 ? 's' : ''}} em atraso!</span>
+            <span>{{overdueTasks()}} tarefa{{overdueTasks() > 1 ? 's' : ''}} em atraso!</span>
           </div>
         }
       </div>
       <p class="title">
-        {{taskStatus[cardDataEntrie[0]]}}
+        {{taskStatus[cardDataEntrie()[0]]}}
       </p>
     </div>
-    <div class="card-icon" [ngClass]="taskIcons[cardDataEntrie[0]].iconName">
-      <fa-icon [className]="taskIcons[cardDataEntrie[0]].iconName" [icon]="taskIcons[cardDataEntrie[0]]"></fa-icon>
+    <div class="card-icon" [ngClass]="taskIcons[cardDataEntrie()[0]].iconName">
+      <fa-icon [className]="taskIcons[cardDataEntrie()[0]].iconName" [icon]="taskIcons[cardDataEntrie()[0]]"></fa-icon>
     </div>
   </div>
 }
