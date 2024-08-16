@@ -21,7 +21,11 @@ export class TaksService {
     return this.http.get<Task[]>('/api/tasks')
       .pipe(
         map(tasks => {
-          const uniqueProjects = new Set(tasks.map(task => task.project));
+          const uniqueProjects = new Set(
+            tasks
+              .map(task => task.project)
+              .filter(projectName => projectName)
+          );
           return [...uniqueProjects].map((projectName, index) => ({
             id: index + 1,
             text: projectName
