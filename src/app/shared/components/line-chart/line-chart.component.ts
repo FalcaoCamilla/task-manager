@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, input, OnInit } from '@angular/core';
 import { ChartModule } from 'primeng/chart';
 import { chartData, SelectData } from '../../models';
 import ChartDataLabels from 'chartjs-plugin-datalabels'
@@ -14,7 +14,7 @@ import { DropdownModule } from 'primeng/dropdown';
   styleUrl: './line-chart.component.scss'
 })
 export class LineChartComponent implements OnInit {
-  @Input() chartData: chartData[] = [];
+  chartData = input<chartData[]>([]);
 
   data: any = {};
 
@@ -32,11 +32,11 @@ export class LineChartComponent implements OnInit {
   }
 
   protected setDataChart() {
-    let dates = this.chartData.map(data => data.data_conclusao);
+    let dates = this.chartData().map(data => data.data_conclusao);
     dates = [...new Set(dates)];
 
     const groupedData: { [key: string]: string[] } = {};
-    this.chartData.forEach(task => {
+    this.chartData().forEach(task => {
       if (!groupedData[task.data_conclusao]) {
         groupedData[task.data_conclusao] = [];
       }
