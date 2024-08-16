@@ -12,7 +12,8 @@ export class LoginService {
   //PLATFORM_ID identifica a plataforma em que o aplicativo está sendo executado (navegador ou servidor). Esse ID é armazenado em platformId para uso posterior.
 
   public login(formLogin: {username: string, password: string}) {
-    const login = JSON.parse(localStorage.getItem("login") || '');
+    const storedLogin = localStorage.getItem("login");
+    const login = storedLogin ? JSON.parse(storedLogin) : null;
 
     if(!login || !(login.username === formLogin.username && login.password === formLogin.password)) {
       return of(false);
