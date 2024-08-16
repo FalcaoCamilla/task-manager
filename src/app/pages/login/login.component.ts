@@ -1,16 +1,17 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, signal, WritableSignal } from '@angular/core';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
-import { FloatLabelModule } from 'primeng/floatlabel';
 import { InputTextModule } from 'primeng/inputtext';
 import { LoginService } from '../../services/login.service';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
-
+import { InputGroupModule } from 'primeng/inputgroup';
+import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
+import { PasswordModule } from 'primeng/password';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, InputTextModule, FloatLabelModule, ToastrModule, ReactiveFormsModule],
+  imports: [CommonModule, InputTextModule, InputGroupAddonModule, InputGroupModule, PasswordModule, ToastrModule, ReactiveFormsModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
@@ -19,13 +20,18 @@ export class LoginComponent {
   private _loginService = inject(LoginService);
   private _router = inject(Router);
 
-  protected isRegister: WritableSignal<boolean> = signal(false);
+  isRegister: WritableSignal<boolean> = signal(false);
 
   protected formLogin: FormGroup = new FormGroup({
     username: new FormControl(null, Validators.required),
     email: new FormControl(null),
     password: new FormControl(null, Validators.required),
   })
+
+  toggleRegister() {
+    this.isRegister.set(!this.isRegister());
+    this.formLogin.reset()
+  }
 
   protected login() {
     this._loginService.login(this.formLogin.getRawValue()).subscribe({
@@ -47,7 +53,7 @@ export class LoginComponent {
           return
         }
         this._toastr.success('Cadastro realizado com sucesso')
-        this._router.navigateByUrl('/login')
+        this.toggleRegister()
       }
     })
   }
