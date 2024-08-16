@@ -1,4 +1,4 @@
-import { Component, input, Input, OnInit, signal, WritableSignal } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { CardModule } from 'primeng/card';
 import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
