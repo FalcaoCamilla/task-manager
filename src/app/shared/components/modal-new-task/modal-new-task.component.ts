@@ -1,6 +1,6 @@
 import { CalendarModule } from 'primeng/calendar';
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, inject, OnInit, Output } from '@angular/core';
+import { Component, inject, OnInit, output } from '@angular/core';
 import { DialogModule } from 'primeng/dialog';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
@@ -25,8 +25,8 @@ export class ModalNewTaskComponent implements OnInit {
   private _taskService = inject(TaksService);
   private _toastr = inject(ToastrService);
 
-  @Output() hideComponent = new EventEmitter<boolean>();
-  @Output() updateTasks = new EventEmitter<boolean>();
+  hideComponent = output<boolean>();
+  updateTasks = output<boolean>();
   protected addIcon = faPlus;
   protected iconFile = faUpload;
   protected visible: boolean = true;
