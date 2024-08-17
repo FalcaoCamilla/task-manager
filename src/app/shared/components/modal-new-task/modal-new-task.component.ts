@@ -13,6 +13,7 @@ import { SelectData, User } from '../../models';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { markAllAsDirty } from '../../utils';
 import { TaksService } from '../../../services/tasks.service';
+import { UserService } from '../../../services/user.service';
 
 @Component({
   selector: 'app-modal-new-task',
@@ -23,6 +24,7 @@ import { TaksService } from '../../../services/tasks.service';
 })
 export class ModalNewTaskComponent implements OnInit {
   private _taskService = inject(TaksService);
+  private _userService = inject(UserService);
   private _toastr = inject(ToastrService);
 
   hideComponent = output<boolean>();
@@ -49,7 +51,7 @@ export class ModalNewTaskComponent implements OnInit {
   })
 
   ngOnInit(): void {
-    this._taskService.getUsers().subscribe({
+    this._userService.getUsers().subscribe({
       next: (data) => this.users = data
     })
   }
