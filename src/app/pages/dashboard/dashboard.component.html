@@ -1,7 +1,7 @@
 <div class="dashboard-container">
   <div class="header">
     <div class="welcome">
-      <span>Olá Neto,</span>
+      <span>Olá {{loggedInUser?.name}},</span>
       <span>Bem vindo ao seu gestor de tarefas!</span>
     </div>
     <button (click)="showModalNewTask = true">

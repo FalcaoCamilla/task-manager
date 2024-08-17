@@ -1,13 +1,14 @@
 import { Component, inject, OnInit, signal, WritableSignal } from '@angular/core';
 import { CardModule } from 'primeng/card';
 import { DashboardService } from '../../services/dashboard.service';
-import { cardData, DashboardData } from '../../shared/models';
+import { cardData, DashboardData, User } from '../../shared/models';
 import { ToastrService } from 'ngx-toastr';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { LineChartComponent } from '../../shared/components/line-chart/line-chart.component';
 import { CardComponent } from "../../shared/components/card/card.component";
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { ModalNewTaskComponent } from '../../shared/components/modal-new-task/modal-new-task.component';
+import { UserService } from '../../services/user.service';
 @Component({
   selector: 'app-dashboard',
   standalone: true,
@@ -18,7 +19,9 @@ import { ModalNewTaskComponent } from '../../shared/components/modal-new-task/mo
 export class DashboardComponent implements OnInit {
   private _dashboardservice = inject(DashboardService);
   private _toastr = inject(ToastrService);
+  private _userService = inject(UserService);
 
+  protected loggedInUser: User | null = null;
   protected dashboardData: WritableSignal<DashboardData> = signal({
     chartData: [], 
     cardData: {
@@ -41,6 +44,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.getDashboardData();
+    this.loggedInUser = this._userService.loggedInUser; //necessidade de usar behaviorSubject? to do
   }
 
   protected getDashboardData() {
