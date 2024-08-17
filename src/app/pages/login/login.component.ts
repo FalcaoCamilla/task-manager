@@ -23,8 +23,8 @@ export class LoginComponent {
   isRegister: WritableSignal<boolean> = signal(false);
 
   protected formLogin: FormGroup = new FormGroup({
-    username: new FormControl(null, Validators.required),
-    email: new FormControl(null),
+    name: new FormControl(null, Validators.required),
+    email: new FormControl(null, Validators.required),
     password: new FormControl(null, Validators.required),
   })
 

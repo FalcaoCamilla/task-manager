@@ -1,24 +1,24 @@
 <div class="login">
   <div class="form-div">
     <form [formGroup]="formLogin" (keydown.enter)="isRegister() ? register() : login()">
-      <div class="margin-bottom">
-        <p-inputGroup>
-          <p-inputGroupAddon>
-              <i class="pi pi-user"></i>
-          </p-inputGroupAddon>
-          <input pInputText placeholder="Username" formControlName="username"/>
-        </p-inputGroup>
-      </div>
       @if(isRegister()) {
         <div class="margin-bottom">
           <p-inputGroup>
             <p-inputGroupAddon>
-                <i class="pi pi-envelope"></i>
+                <i class="pi pi-user"></i>
             </p-inputGroupAddon>
-            <input pInputText placeholder="Email" formControlName="email"/>
+            <input pInputText placeholder="Name" formControlName="name"/>
           </p-inputGroup>
         </div>
       }
+      <div class="margin-bottom">
+        <p-inputGroup>
+          <p-inputGroupAddon>
+              <i class="pi pi-envelope"></i>
+          </p-inputGroupAddon>
+          <input pInputText placeholder="Email" formControlName="email"/>
+        </p-inputGroup>
+      </div>
       <div class="margin-bottom">
         <p-password formControlName="password" [toggleMask]="true" [feedback]="isRegister()" />
       </div>
