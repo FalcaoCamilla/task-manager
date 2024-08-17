@@ -13,17 +13,20 @@ export class InMemoryService implements InMemoryDbService {
       {
         id: 1,
         name: 'Camilla Falcão',
-        email: 'camilla.falcao@email.com'
+        email: 'camilla.falcao@email.com',
+        password: '123'
       },
       {
         id: 2,
         name: 'Euclides Neto',
-        email: 'euclides.neto@email.com'
+        email: 'euclides.neto@email.com',
+        password: '123'
       },
       {
         id: 3,
         name: 'Hugo Falcão',
-        email: 'hugo.falcao@email.com'
+        email: 'hugo.falcao@email.com',
+        password: '123'
       },
     ]
     const tasks: Task[] = [
