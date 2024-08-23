@@ -133,7 +133,7 @@
               <td class="icons">
                 <div class="div-icons">
                   <fa-icon [icon]="faTrash" (click)="deleteTask(task.id)"></fa-icon>
-                  <fa-icon [icon]="faEye"></fa-icon>
+                  <fa-icon [icon]="faEye" (click)="openModalTask(task, true)"></fa-icon>
                   <fa-icon [icon]="faEdit" (click)="openModalTask(task)"></fa-icon>
                 </div>
               </td>
@@ -144,5 +144,5 @@
 </div>
 
 @if(showModalTask) {
-  <app-modal-task (hideComponent)="showModalTask = false" (updateTasks)="getTasks()" [taskDetails]="taskDetails"/>
+  <app-modal-task (hideComponent)="showModalTask = false" (updateTasks)="getTasks()" [taskDetails]="taskDetails" [isViewingMode]="isViewingMode"/>
 }

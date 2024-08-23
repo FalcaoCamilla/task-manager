@@ -25,6 +25,7 @@ export class TasksComponent implements OnInit {
   private _toastr = inject(ToastrService);
   
   protected showModalTask: boolean = false;
+  protected isViewingMode: boolean = false;
   protected addIcon = faPlus;
   protected faTrash = faTrashCan;
   protected faEye = faEye;
@@ -87,7 +88,8 @@ export class TasksComponent implements OnInit {
     })
   }
 
-  protected openModalTask(task: Task) {
+  protected openModalTask(task: Task, isViewingMode: boolean = false) {
+    if(isViewingMode) this.isViewingMode = true;
     this.taskDetails = task;
     this.showModalTask = true;
   }
