@@ -16,11 +16,11 @@ import { TaksService } from '../../../services/tasks.service';
 import { UserService } from '../../../services/user.service';
 
 @Component({
-  selector: 'app-modal-new-task',
+  selector: 'app-modal-task',
   standalone: true,
   imports: [ CommonModule, DialogModule, DropdownModule, CalendarModule, InputTextModule, FloatLabelModule, FontAwesomeModule, FormsModule, ReactiveFormsModule, ToastrModule ],
-  templateUrl: './modal-new-task.component.html',
-  styleUrl: './modal-new-task.component.scss'
+  templateUrl: './modal-task.component.html',
+  styleUrl: './modal-task.component.scss'
 })
 export class ModalNewTaskComponent implements OnInit {
   private _taskService = inject(TaksService);
