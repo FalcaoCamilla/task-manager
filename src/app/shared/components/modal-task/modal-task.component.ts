@@ -1,6 +1,6 @@
 import { CalendarModule } from 'primeng/calendar';
 import { CommonModule } from '@angular/common';
-import { Component, inject, input, OnInit, output } from '@angular/core';
+import { booleanAttribute, Component, inject, Input, input, OnInit, output } from '@angular/core';
 import { DialogModule } from 'primeng/dialog';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
@@ -27,6 +27,7 @@ export class ModalNewTaskComponent implements OnInit {
   private _userService = inject(UserService);
   private _toastr = inject(ToastrService);
 
+  @Input({transform: booleanAttribute}) isViewingMode: boolean = false;
   taskDetails = input<Task | null>();
   hideComponent = output<boolean>();
   updateTasks = output<boolean>();
