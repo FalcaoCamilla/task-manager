@@ -34,8 +34,11 @@ export class TaksService {
       );
   }
 
-
   createTask(task: Partial<Task>): Observable<any> {
     return this.http.post('/api/tasks', task)
+  }
+
+  deleteTask(taskId: number): Observable<any> {
+    return this.http.delete(`/api/tasks/${taskId}`)
   }
 }
