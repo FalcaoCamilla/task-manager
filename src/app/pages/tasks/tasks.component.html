@@ -132,7 +132,7 @@
               </td>
               <td class="icons">
                 <div class="div-icons">
-                  <fa-icon [icon]="faTrash"></fa-icon>
+                  <fa-icon [icon]="faTrash" (click)="deleteTask(task.id)"></fa-icon>
                   <fa-icon [icon]="faEye"></fa-icon>
                   <fa-icon [icon]="faEdit"></fa-icon>
                 </div>

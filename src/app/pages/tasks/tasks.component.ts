@@ -11,6 +11,7 @@ import { TaksService } from '../../services/tasks.service';
 import { userArrayFormatterPipe } from "../../shared/directives/user-array-formatter.pipe";
 import { FormsModule } from '@angular/forms';
 import { ModalNewTaskComponent } from '../../shared/components/modal-new-task/modal-new-task.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-tasks',
@@ -21,7 +22,8 @@ import { ModalNewTaskComponent } from '../../shared/components/modal-new-task/mo
 })
 export class TasksComponent implements OnInit {
   private _taskService = inject(TaksService);
-
+  private _toastr = inject(ToastrService);
+  
   protected showModalNewTask: boolean = false;
   protected addIcon = faPlus;
   protected faTrash = faTrashCan;
@@ -71,6 +73,12 @@ export class TasksComponent implements OnInit {
     this.getTasks();
     this._setProjectsOptions();
   }
+  
+  private _setProjectsOptions() {
+    this._taskService.getProjects().subscribe({
+      next: (data) => this.projectsOptions = data
+    })
+  }
 
   protected getTasks() {
     this._taskService.getTasks().subscribe({
@@ -78,9 +86,14 @@ export class TasksComponent implements OnInit {
     })
   }
 
-  private _setProjectsOptions() {
-    this._taskService.getProjects().subscribe({
-      next: (data) => this.projectsOptions = data
+  protected deleteTask(taskId: number) {
+    this._taskService.deleteTask(taskId).subscribe({
+      next: () => {
+        this.getTasks()
+        this._toastr.success('Tarefa removida com sucesso.')
+      },
+      error: () => this._toastr.error('Não foi possível remover esta tarefa.')
     })
   }
+
 }
