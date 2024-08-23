@@ -88,9 +88,13 @@ export class TasksComponent implements OnInit {
     })
   }
 
-  protected openModalTask(task: Task, isViewingMode: boolean = false) {
+  protected openModalTask(task?: Task, isViewingMode: boolean = false) {
     if(isViewingMode) this.isViewingMode = true;
-    this.taskDetails = task;
+    if(task) {
+      this.taskDetails = task
+    } else {
+      this.taskDetails = null
+    };
     this.showModalTask = true;
   }
 
