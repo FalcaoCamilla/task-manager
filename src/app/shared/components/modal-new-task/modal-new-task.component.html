@@ -52,15 +52,30 @@
       </div>
 
       <div class="margin-bottom">
-        <p-dropdown 
-          optionLabel="name"
-          placeholder="Responsáveis"
-          formControlName="responsible"
-          [ngClass]="{'invalid' : newTaskForm.controls['responsible'].touched && newTaskForm.controls['responsible'].dirty && !newTaskForm.controls['responsible'].value}"
-          [options]="users" 
-          [dropdownIcon]="'pi pi-search'"
-        >
-        </p-dropdown>
+        <div class="dropdown-group">
+          <p-dropdown 
+            optionLabel="name"
+            placeholder="Responsáveis"
+            formControlName="responsible"
+            [ngClass]="{'invalid' : newTaskForm.controls['responsible'].touched && newTaskForm.controls['responsible'].dirty && !newTaskForm.controls['responsible'].value}"
+            [options]="users" 
+            [dropdownIcon]="'pi pi-search'"
+          >
+          </p-dropdown>
+
+          <p-dropdown 
+            optionLabel="text"
+            optionValue="id"
+            placeholder="Projeto"
+            formControlName="project"
+            [ngClass]="{'invalid' : newTaskForm.controls['project'].touched && newTaskForm.controls['project'].dirty && !newTaskForm.controls['project'].value}"
+            [options]="projectsOptions" 
+            [filter]="true"
+            [emptyFilterMessage]="'Nenhum resultado encontrado'"
+            [dropdownIcon]="'pi pi-search'"
+          >
+          </p-dropdown>
+        </div>
       </div>
 
       <div class="file">

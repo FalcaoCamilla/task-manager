@@ -39,6 +39,7 @@ export class ModalNewTaskComponent implements OnInit {
     {id: 3, text: 'Baixa', value: 'baixa'},
   ];
   protected users: User[] = [];
+  protected projectsOptions: SelectData[] = [];
 
   //project
   protected newTaskForm: FormGroup = new FormGroup({
@@ -46,13 +47,21 @@ export class ModalNewTaskComponent implements OnInit {
     description: new FormControl(null, Validators.required),
     deadline: new FormControl(null),
     priority: new FormControl(null),
+    project: new FormControl(null),
     responsible: new FormControl(null, Validators.required),
     file: new FormControl(null),
   })
 
   ngOnInit(): void {
+    this._setDropdownOptions();
+  }
+
+  private _setDropdownOptions() {
     this._userService.getUsers().subscribe({
       next: (data) => this.users = data
+    })
+    this._taskService.getProjects().subscribe({
+      next: (data) => this.projectsOptions = data
     })
   }
 
