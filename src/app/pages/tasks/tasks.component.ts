@@ -10,7 +10,7 @@ import { filterTask, priority, SelectData, status, Task } from '../../shared/mod
 import { TaksService } from '../../services/tasks.service';
 import { userArrayFormatterPipe } from "../../shared/directives/user-array-formatter.pipe";
 import { FormsModule } from '@angular/forms';
-import { ModalNewTaskComponent } from '../../shared/components/modal-new-task/modal-new-task.component';
+import { ModalNewTaskComponent } from '../../shared/components/modal-task/modal-task.component';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
