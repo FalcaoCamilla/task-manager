@@ -31,5 +31,5 @@
 </div>
 
 @if(showModalNewTask) {
-  <app-modal-new-task (hideComponent)="showModalNewTask = false" (updateTasks)="getDashboardData()"/>
+  <app-modal-task (hideComponent)="showModalNewTask = false" (updateTasks)="getDashboardData()"/>
 }

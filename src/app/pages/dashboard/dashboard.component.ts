@@ -7,7 +7,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { LineChartComponent } from '../../shared/components/line-chart/line-chart.component';
 import { CardComponent } from "../../shared/components/card/card.component";
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
-import { ModalNewTaskComponent } from '../../shared/components/modal-new-task/modal-new-task.component';
+import { ModalNewTaskComponent } from '../../shared/components/modal-task/modal-task.component';
 import { UserService } from '../../services/user.service';
 @Component({
   selector: 'app-dashboard',
