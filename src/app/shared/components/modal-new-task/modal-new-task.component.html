@@ -59,6 +59,8 @@
             formControlName="responsible"
             [ngClass]="{'invalid' : newTaskForm.controls['responsible'].touched && newTaskForm.controls['responsible'].dirty && !newTaskForm.controls['responsible'].value}"
             [options]="users" 
+            [filter]="true"
+            [emptyFilterMessage]="'Nenhum resultado encontrado'"
             [dropdownIcon]="'pi pi-search'"
           >
           </p-dropdown>
