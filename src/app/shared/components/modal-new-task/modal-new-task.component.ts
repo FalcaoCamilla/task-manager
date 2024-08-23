@@ -1,6 +1,6 @@
 import { CalendarModule } from 'primeng/calendar';
 import { CommonModule } from '@angular/common';
-import { Component, inject, OnInit, output } from '@angular/core';
+import { Component, inject, input, OnInit, output } from '@angular/core';
 import { DialogModule } from 'primeng/dialog';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
@@ -8,10 +8,10 @@ import { FloatLabelModule } from 'primeng/floatlabel';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormControl, FormGroup, FormsModule, Validators } from '@angular/forms';
 import { faPlus, faUpload } from '@fortawesome/free-solid-svg-icons';
-import { ReactiveFormsModule } from '@angular/forms';
-import { SelectData, User } from '../../models';
-import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { markAllAsDirty } from '../../utils';
+import { ReactiveFormsModule } from '@angular/forms';
+import { SelectData, Task, User } from '../../models';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { TaksService } from '../../../services/tasks.service';
 import { UserService } from '../../../services/user.service';
 
@@ -27,6 +27,7 @@ export class ModalNewTaskComponent implements OnInit {
   private _userService = inject(UserService);
   private _toastr = inject(ToastrService);
 
+  taskDetails = input<Task | null>();
   hideComponent = output<boolean>();
   updateTasks = output<boolean>();
   protected addIcon = faPlus;
@@ -41,19 +42,22 @@ export class ModalNewTaskComponent implements OnInit {
   protected users: User[] = [];
   protected projectsOptions: SelectData[] = [];
 
-  //project
-  protected newTaskForm: FormGroup = new FormGroup({
+  protected taskForm: FormGroup = new FormGroup({
+    id: new FormControl(null),
     name: new FormControl(null, Validators.required),
     description: new FormControl(null, Validators.required),
     deadline: new FormControl(null),
     priority: new FormControl(null),
     project: new FormControl(null),
+    status: new FormControl(null),
+    finish_date: new FormControl(null),
     responsible: new FormControl(null, Validators.required),
     file: new FormControl(null),
   })
-
+  
   ngOnInit(): void {
     this._setDropdownOptions();
+    if(this.taskDetails()) this._patchFormValue();
   }
 
   private _setDropdownOptions() {
@@ -65,27 +69,34 @@ export class ModalNewTaskComponent implements OnInit {
     })
   }
 
-  protected criarTarefa() {
-    if(this.newTaskForm.invalid) {
-      markAllAsDirty(this.newTaskForm);
+  private _patchFormValue() {
+    this.taskForm.patchValue(this.taskDetails() ?? {});
+    this.taskForm.controls['responsible'].setValue(this.taskDetails()?.responsible[0]);
+    const deadlineFormatada = this.taskDetails()?.deadline;
+    if (deadlineFormatada) this.taskForm.controls['deadline'].setValue(new Date(deadlineFormatada))
+  }
+
+  protected alterarOuCriarTarefa() {
+    if(this.taskForm.invalid) {
+      markAllAsDirty(this.taskForm);
       this._toastr.error('Dados inválidos');
       return
     }
 
-    const formValue = this.newTaskForm.getRawValue();
+    const formValue = this.taskForm.getRawValue();
     const form = {
       ...formValue,
-      responsible: Array(this.newTaskForm.controls['responsible'].value),
-      status: 'pendente'
+      responsible: Array(this.taskForm.controls['responsible'].value),
+      status: this.taskDetails() ? this.taskForm.controls['status'].value : 'pendente'
     }
 
     this._taskService.createTask(form).subscribe({
       next: () => {
         this.updateTasks.emit(true);
         this.onHide();
-        this._toastr.success('Tarefa cadastrada com sucesso');
+        this._toastr.success(`Tarefa ${this.taskDetails() ? 'alterada' : 'cadastrada'} com sucesso`);
       },
-      error: () => this._toastr.error('Não foi possível cadastrar a tarefa')
+      error: () => this._toastr.error(`Não foi possível ${this.taskDetails() ? 'alterar' : 'cadastrar'} a tarefa`)
     })
   }
 

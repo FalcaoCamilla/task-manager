@@ -1,5 +1,5 @@
 <p-dialog 
-  header="Criar Tarefa" 
+  [header]="taskDetails() ? 'Alterar Tarefa' : 'Criar Tarefa'" 
   position="center"
   [resizable]="false"
   [maximizable]="false"
@@ -9,7 +9,7 @@
   [(visible)]="visible" 
   (onHide)="onHide()"
 >
-    <form [formGroup]="newTaskForm">
+    <form [formGroup]="taskForm">
       <div class="margin-bottom">
         <p-floatLabel>
           <input pInputText id="title" formControlName="name" class="title"/>
@@ -22,7 +22,7 @@
           pInputTextarea 
           formControlName="description" 
           placeholder="Detalhes da tarefa"
-          [ngClass]="{'invalid' : newTaskForm.controls['description'].touched && newTaskForm.controls['description'].dirty && !newTaskForm.controls['description'].value}"
+          [ngClass]="{'invalid' : taskForm.controls['description'].touched && taskForm.controls['description'].dirty && !taskForm.controls['description'].value}"
         >
         </textarea>
       </div>
@@ -57,7 +57,7 @@
             optionLabel="name"
             placeholder="Responsáveis"
             formControlName="responsible"
-            [ngClass]="{'invalid' : newTaskForm.controls['responsible'].touched && newTaskForm.controls['responsible'].dirty && !newTaskForm.controls['responsible'].value}"
+            [ngClass]="{'invalid' : taskForm.controls['responsible'].touched && taskForm.controls['responsible'].dirty && !taskForm.controls['responsible'].value}"
             [options]="users" 
             [filter]="true"
             [emptyFilterMessage]="'Nenhum resultado encontrado'"
@@ -70,7 +70,7 @@
             optionValue="text"
             placeholder="Projeto"
             formControlName="project"
-            [ngClass]="{'invalid' : newTaskForm.controls['project'].touched && newTaskForm.controls['project'].dirty && !newTaskForm.controls['project'].value}"
+            [ngClass]="{'invalid' : taskForm.controls['project'].touched && taskForm.controls['project'].dirty && !taskForm.controls['project'].value}"
             [options]="projectsOptions" 
             [filter]="true"
             [emptyFilterMessage]="'Nenhum resultado encontrado'"
@@ -89,9 +89,9 @@
 
     <div class="div-submit">
         <button label="Cancelar" (onClick)="onHide()">Cancelar</button>
-        <button (click)="criarTarefa()">
+        <button (click)="alterarOuCriarTarefa()">
           <fa-icon [icon]="addIcon" [className]="addIcon.iconName"></fa-icon>
-          Criar tarefa
+          {{taskDetails() ? 'Alterar' : 'Criar'}} tarefa
         </button>
     </div>
 </p-dialog>
