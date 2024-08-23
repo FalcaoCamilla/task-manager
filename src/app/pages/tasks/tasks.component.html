@@ -13,7 +13,7 @@
         </ng-template>
       </p-breadcrumb>
     </div>
-    <button (click)="showModalNewTask = true">
+    <button (click)="showModalTask = true">
       <fa-icon [icon]="addIcon" [className]="addIcon.iconName"></fa-icon>
       Nova tarefa
     </button>
@@ -134,7 +134,7 @@
                 <div class="div-icons">
                   <fa-icon [icon]="faTrash" (click)="deleteTask(task.id)"></fa-icon>
                   <fa-icon [icon]="faEye"></fa-icon>
-                  <fa-icon [icon]="faEdit"></fa-icon>
+                  <fa-icon [icon]="faEdit" (click)="openModalTask(task)"></fa-icon>
                 </div>
               </td>
           </tr>
@@ -143,6 +143,6 @@
   </div>
 </div>
 
-@if(showModalNewTask) {
-  <app-modal-new-task (hideComponent)="showModalNewTask = false" (updateTasks)="getTasks()"/>
+@if(showModalTask) {
+  <app-modal-new-task (hideComponent)="showModalTask = false" (updateTasks)="getTasks()" [taskDetails]="taskDetails"/>
 }

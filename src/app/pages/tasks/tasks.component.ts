@@ -24,7 +24,7 @@ export class TasksComponent implements OnInit {
   private _taskService = inject(TaksService);
   private _toastr = inject(ToastrService);
   
-  protected showModalNewTask: boolean = false;
+  protected showModalTask: boolean = false;
   protected addIcon = faPlus;
   protected faTrash = faTrashCan;
   protected faEye = faEye;
@@ -68,6 +68,7 @@ export class TasksComponent implements OnInit {
     }, 
   ]
   protected taskData: Task[] = [];
+  protected taskDetails: Task | null = null;
 
   ngOnInit(): void {
     this.getTasks();
@@ -84,6 +85,11 @@ export class TasksComponent implements OnInit {
     this._taskService.getTasks().subscribe({
       next: (data) => this.taskData = data
     })
+  }
+
+  protected openModalTask(task: Task) {
+    this.taskDetails = task;
+    this.showModalTask = true;
   }
 
   protected deleteTask(taskId: number) {
