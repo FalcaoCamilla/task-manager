@@ -2,6 +2,19 @@
 
 :host {
   color: $font-color;
+
+  ::ng-deep {
+    p-dropdown {
+      display: flex;
+      justify-content: flex-end;
+      margin-right: 18px;
+
+      .p-dropdown-trigger-icon {
+        font-size: 18px;
+        color: $font-color;
+      }
+    }
+  }
 }
 
 .dashboard-container {
