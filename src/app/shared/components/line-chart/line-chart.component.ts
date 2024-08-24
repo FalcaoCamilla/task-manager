@@ -1,15 +1,12 @@
-import { Component, input, OnInit } from '@angular/core';
+import { Component, effect, input, OnInit } from '@angular/core';
 import { ChartModule } from 'primeng/chart';
-import { chartData, SelectData } from '../../models';
+import { chartData } from '../../models';
 import ChartDataLabels from 'chartjs-plugin-datalabels'
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { DropdownModule } from 'primeng/dropdown';
 
 @Component({
   selector: 'app-line-chart',
   standalone: true,
-  imports: [ChartModule, CommonModule, DropdownModule, FormsModule,],
+  imports: [ChartModule],
   templateUrl: './line-chart.component.html',
   styleUrl: './line-chart.component.scss'
 })
@@ -18,14 +15,11 @@ export class LineChartComponent implements OnInit {
 
   data: any = {};
 
-  protected filterOptions: SelectData[] = [
-    {id: 1, text: 'Hoje'},
-    {id: 2, text: 'Últimos 7 dias'},
-    {id: 3, text: 'Últimos 15 dias'},
-  ];
-  protected selectedOption: number = 3;
-
-  constructor() {}
+  constructor() {
+    effect(() => {
+      this.setDataChart()
+    })
+  }
 
   ngOnInit(): void {
     this.setDataChart();
