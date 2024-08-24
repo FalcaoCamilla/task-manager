@@ -10,7 +10,7 @@ import { FormatDate } from '../shared/utils';
 export class DashboardService {
   protected http = inject(HttpClient);
 
-  getDashboardData(): Observable<DashboardData> {
+  getCardData(): Observable<cardData> {
     const currentDate = new Date().toLocaleDateString('pt-BR');
 
     /* visualização de tarefas atrasadas mediante status "em progresso". 
@@ -30,7 +30,14 @@ export class DashboardService {
           total_atraso: tarefasAtrasadas.length,
           total_concluidas: tasks.filter(task => task.status === 'concluido').length
         };
+      return cardData as cardData
+      })
+    )
+  }
 
+  getChartData(): Observable<chartData[]> {
+    return this.http.get<Task[]>('/api/tasks').pipe(
+      map(tasks => {
         const chartData: chartData[] = tasks
         .filter(task => task.finish_date !== null && task.finish_date !== undefined)
         .map(task => ({
@@ -38,7 +45,7 @@ export class DashboardService {
           nome: task.name
         }));
 
-        return { cardData, chartData } as DashboardData;
+        return chartData as chartData[];
       })
     );
   }
