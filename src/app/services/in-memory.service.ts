@@ -38,8 +38,8 @@ export class InMemoryService implements InMemoryDbService {
         priority: 'media', 
         project: 'Task Manager', 
         responsible: Array(users[0]), 
-        deadline: new Date(2024, 8, 12, 12, 0, 0),
-        finish_date: new Date(2024, 8, 10, 12, 0, 0) 
+        deadline: new Date(2024, 7, 12, 12, 0, 0),
+        finish_date: new Date(2024, 7, 10, 12, 0, 0) 
       },
       { 
         id: 2, 
@@ -49,8 +49,8 @@ export class InMemoryService implements InMemoryDbService {
         priority: 'media', 
         project: 'Task Manager', 
         responsible: Array(users[1]), 
-        deadline: new Date(2024, 8, 13, 12, 0, 0), 
-        finish_date: new Date(2024, 8, 11, 12, 0, 0) 
+        deadline: new Date(2024, 7, 13, 12, 0, 0), 
+        finish_date: new Date(2024, 7, 11, 12, 0, 0) 
       },
       { 
         id: 3, 
@@ -60,8 +60,8 @@ export class InMemoryService implements InMemoryDbService {
         priority: 'alta', 
         project: 'Task Manager', 
         responsible: Array(users[2]), 
-        deadline: new Date(2024, 8, 12, 12, 0, 0),
-        finish_date: new Date(2024, 8, 11, 12, 0, 0) 
+        deadline: new Date(2024, 7, 12, 12, 0, 0),
+        finish_date: new Date(2024, 7, 11, 12, 0, 0) 
       },
       { 
         id: 4, 
@@ -71,8 +71,8 @@ export class InMemoryService implements InMemoryDbService {
         priority: 'baixa', 
         project: 'Task Manager', 
         responsible: Array(users[0], users[1]), 
-        deadline: new Date(2024, 8, 12, 12, 0, 0),
-        finish_date: new Date(2024, 8, 12, 12, 0, 0) 
+        deadline: new Date(2024, 7, 12, 12, 0, 0),
+        finish_date: new Date(2024, 7, 12, 12, 0, 0) 
       }, 
       { 
         id: 5, 
@@ -82,7 +82,7 @@ export class InMemoryService implements InMemoryDbService {
         priority: 'alta', 
         project: 'Task Manager', 
         responsible: Array(users[0]), 
-        deadline: new Date(2024, 8, 13, 12, 0, 0)
+        deadline: new Date(2024, 7, 13, 12, 0, 0)
       },
       { 
         id: 6, 
@@ -92,7 +92,7 @@ export class InMemoryService implements InMemoryDbService {
         priority: 'baixa', 
         project: '', 
         responsible: Array(users[1]), 
-        deadline: new Date(2024, 8, 10, 12, 0, 0)
+        deadline: new Date(2024, 7, 10, 12, 0, 0)
       },
     ]
     return { users, tasks}
