@@ -1,18 +1,21 @@
-import { Component, inject, OnInit, signal, WritableSignal } from '@angular/core';
+import { CardComponent } from "../../shared/components/card/card.component";
+import { cardData, chartData, SelectData, User } from '../../shared/models';
 import { CardModule } from 'primeng/card';
+import { Component, inject, OnInit, signal, WritableSignal } from '@angular/core';
 import { DashboardService } from '../../services/dashboard.service';
-import { cardData, chartData, User } from '../../shared/models';
-import { ToastrService } from 'ngx-toastr';
+import { DropdownModule } from 'primeng/dropdown';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { LineChartComponent } from '../../shared/components/line-chart/line-chart.component';
-import { CardComponent } from "../../shared/components/card/card.component";
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { ModalNewTaskComponent } from '../../shared/components/modal-task/modal-task.component';
+import { ToastrService } from 'ngx-toastr';
 import { UserService } from '../../services/user.service';
+import { CommonModule } from "@angular/common";
+import { FormsModule } from "@angular/forms";
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [ModalNewTaskComponent, CardComponent, CardModule, FontAwesomeModule, LineChartComponent],
+  imports: [ModalNewTaskComponent, CardComponent, CardModule, CommonModule, DropdownModule, FontAwesomeModule, FormsModule, LineChartComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })
@@ -34,6 +37,14 @@ export class DashboardComponent implements OnInit {
   protected showModalNewTask: boolean = false;
   protected addIcon = faPlus;
 
+  protected filterOptions: SelectData[] = [
+    {id: 1, text: 'Hoje'},
+    {id: 2, text: 'Últimos 7 dias'},
+    {id: 3, text: 'Últimos 15 dias'},
+    {id: 4, text: 'Últimos 30 dias'},
+  ];
+  protected selectedOption: number = 4;
+
   get cardEntries() {
     const cardDataWithoutAtraso: Partial<cardData> = { ...this.cardData() };
     delete cardDataWithoutAtraso.total_atraso;
@@ -47,7 +58,7 @@ export class DashboardComponent implements OnInit {
 
   protected getDashboardData() {
     this._getCardData();
-    this._getChartData();
+    this.getChartData();
   }
 
   private _getCardData() {
@@ -60,8 +71,8 @@ export class DashboardComponent implements OnInit {
     })
   }
 
-  private _getChartData() {
-    this._dashboardservice.getChartData().subscribe({
+  protected getChartData() {
+    this._dashboardservice.getChartData(this.selectedOption).subscribe({
       next: (data) => {
         this.chartData.set(data);
         this.showLineChart.set(true)

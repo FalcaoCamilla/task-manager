@@ -22,6 +22,15 @@
     <span># Tarefas concluídas por dia</span>
     <div class="view-data">
       @if(showLineChart()) {
+        <p-dropdown 
+          optionLabel="text"
+          optionValue="id"
+          [options]="filterOptions" 
+          [dropdownIcon]="'pi pi-calendar'"
+          [(ngModel)]="selectedOption"
+          (onChange)="getChartData()"
+        >
+        </p-dropdown>
         <app-line-chart [chartData]="chartData()"></app-line-chart>
       } @else {
         <span>Não há registros disponíveis</span>
