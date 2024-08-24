@@ -22,7 +22,7 @@
     <span># Tarefas concluídas por dia</span>
     <div class="view-data">
       @if(showLineChart()) {
-        <app-line-chart [chartData]="dashboardData().chartData"></app-line-chart>
+        <app-line-chart [chartData]="chartData()"></app-line-chart>
       } @else {
         <span>Não há registros disponíveis</span>
       }

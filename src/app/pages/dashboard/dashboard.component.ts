@@ -1,7 +1,7 @@
 import { Component, inject, OnInit, signal, WritableSignal } from '@angular/core';
 import { CardModule } from 'primeng/card';
 import { DashboardService } from '../../services/dashboard.service';
-import { cardData, DashboardData, User } from '../../shared/models';
+import { cardData, chartData, User } from '../../shared/models';
 import { ToastrService } from 'ngx-toastr';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { LineChartComponent } from '../../shared/components/line-chart/line-chart.component';
@@ -22,14 +22,12 @@ export class DashboardComponent implements OnInit {
   private _userService = inject(UserService);
 
   protected loggedInUser: User | null = null;
-  protected dashboardData: WritableSignal<DashboardData> = signal({
-    chartData: [], 
-    cardData: {
-      total_concluidas: 0,
-      total_pendentes: 0,
-      total_progresso: 0
-    }
-  });
+  protected cardData: WritableSignal<cardData> = signal({
+    total_concluidas: 0,
+    total_pendentes: 0,
+    total_progresso: 0
+  })
+  protected chartData: WritableSignal<chartData[]> = signal([]);
   protected overdueTasks: WritableSignal<number> = signal(0);
 
   protected showLineChart: WritableSignal<boolean> = signal(false);
@@ -37,7 +35,7 @@ export class DashboardComponent implements OnInit {
   protected addIcon = faPlus;
 
   get cardEntries() {
-    const cardDataWithoutAtraso: Partial<cardData> = { ...this.dashboardData().cardData };
+    const cardDataWithoutAtraso: Partial<cardData> = { ...this.cardData() };
     delete cardDataWithoutAtraso.total_atraso;
     return Object.entries(cardDataWithoutAtraso as cardData);
   }
@@ -48,10 +46,24 @@ export class DashboardComponent implements OnInit {
   }
 
   protected getDashboardData() {
-    this._dashboardservice.getDashboardData().subscribe({
+    this._getCardData();
+    this._getChartData();
+  }
+
+  private _getCardData() {
+    this._dashboardservice.getCardData().subscribe({
       next: (data) => {
-        this.dashboardData.set(data);
-        this.overdueTasks.set(data.cardData.total_atraso || 0);
+        this.cardData.set(data);
+        this.overdueTasks.set(data.total_atraso || 0);
+      },
+      error: () => this._toastr.error('Falha na requisição')
+    })
+  }
+
+  private _getChartData() {
+    this._dashboardservice.getChartData().subscribe({
+      next: (data) => {
+        this.chartData.set(data);
         this.showLineChart.set(true)
       },
       error: () => this._toastr.error('Falha na requisição')
