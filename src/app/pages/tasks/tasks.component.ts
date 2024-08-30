@@ -41,15 +41,15 @@ export class TasksComponent implements OnInit {
     {id: 4, text: 'Últimos 30 dias'},
   ];
   protected projectsOptions: SelectData[] = [];
-  protected statusOptions: SelectData[] = [
-    {id: 1, text: 'Concluídas'},
-    {id: 2, text: 'Em progresso'},
-    {id: 3, text: 'Pendentes'},
+  protected statusOptions: Array<SelectData & {value: string}> = [
+    {id: 1, text: 'Concluídas', value: 'concluido'},
+    {id: 2, text: 'Em progresso', value: 'em_progresso'},
+    {id: 3, text: 'Pendentes', value: 'pendente'},
   ];
-  protected priorityOptions: SelectData[] = [
-    {id: 1, text: 'Alta'},
-    {id: 2, text: 'Média'},
-    {id: 3, text: 'Baixa'},
+  protected priorityOptions: Array<SelectData & {value: string}> = [
+    {id: 1, text: 'Alta', value: 'alta'},
+    {id: 2, text: 'Média', value: 'media'},
+    {id: 3, text: 'Baixa', value: 'baixa'},
   ];
   protected filterArray: filterTask = {
     project: '',
@@ -83,7 +83,7 @@ export class TasksComponent implements OnInit {
   }
 
   protected getTasks() {
-    this._taskService.getTasks().subscribe({
+    this._taskService.getTasks(this.filterArray).subscribe({
       next: (data) => this.taskData = data
     })
   }
