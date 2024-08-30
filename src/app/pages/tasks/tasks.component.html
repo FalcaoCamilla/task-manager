@@ -23,28 +23,34 @@
     <div class="div-filter">
       <p-dropdown 
         optionLabel="text"
-        optionValue="id"
+        optionValue="text"
         placeholder="Projetos"
-        [(ngModel)]="filterArray.project"
+        [showClear]="filterArray.project ? filterArray.project.length > 0 : false"
         [options]="projectsOptions" 
+        [(ngModel)]="filterArray.project"
+        (onChange)="getTasks()"
       >
       </p-dropdown>
 
       <p-dropdown 
         optionLabel="text"
-        optionValue="id"
+        optionValue="value"
         placeholder="Status"
-        [(ngModel)]="filterArray.status"
+        [showClear]="filterArray.status ? filterArray.status.length > 0 : false"
         [options]="statusOptions" 
+        [(ngModel)]="filterArray.status"
+        (onChange)="getTasks()"
       >
       </p-dropdown>
 
       <p-dropdown 
         optionLabel="text"
-        optionValue="id"
+        optionValue="value"
         placeholder="Todas as prioridades"
-        [(ngModel)]="filterArray.priority"
+        [showClear]="filterArray.priority ? filterArray.priority.length > 0 : false"
         [options]="priorityOptions" 
+        [(ngModel)]="filterArray.priority"
+        (onChange)="getTasks()"
       >
       </p-dropdown>
 
@@ -52,8 +58,9 @@
         optionLabel="text"
         optionValue="id"
         [options]="deadlineOptions" 
-        [(ngModel)]="filterArray.deadline"
         [dropdownIcon]="'pi pi-calendar'"
+        [(ngModel)]="filterArray.deadline"
+        (onChange)="getTasks()"
       >
       </p-dropdown>
     </div>
