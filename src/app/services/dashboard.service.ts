@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { Task, cardData, chartData, DashboardData } from '../shared/models';
+import { Task, cardData, chartData } from '../shared/models';
 import { map, Observable } from 'rxjs'
 import { FormatDate } from '../shared/utils';
+import { filterTasksByDateRange } from '../shared/utils/filterTasksByDateRange';
 
 @Injectable({
   providedIn: 'root'
@@ -66,7 +67,7 @@ export class DashboardService {
             throw new Error('Informe um período válido');
         }
 
-        const filteredTasks = this._filterTasksByDateRange(validTasks, startDate, now);
+        const filteredTasks = filterTasksByDateRange(validTasks, startDate, now);
 
         const chartData: chartData[] = filteredTasks.map(task => ({
           data_conclusao: FormatDate(new Date(task.finish_date!)),
@@ -76,12 +77,5 @@ export class DashboardService {
         return chartData as chartData[];
       })
     );
-  }
-
-  private _filterTasksByDateRange(tasks: Task[], startDate: Date, endDate: Date): Task[] {
-    return tasks.filter(task => {
-      const finishDate = new Date(task.finish_date!); //non-null assertion
-      return finishDate >= startDate && finishDate <= endDate;
-    });
   }
 }
