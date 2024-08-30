@@ -54,15 +54,17 @@
       >
       </p-dropdown>
 
-      <p-dropdown 
-        optionLabel="text"
-        optionValue="id"
-        [options]="deadlineOptions" 
-        [dropdownIcon]="'pi pi-calendar'"
-        [(ngModel)]="filterArray.deadline"
-        (onChange)="getTasks()"
-      >
-      </p-dropdown>
+      @if(filterArray.status === 'concluido') {
+        <p-dropdown 
+          optionLabel="text"
+          optionValue="id"
+          [options]="deadlineOptions" 
+          [dropdownIcon]="'pi pi-calendar'"
+          [(ngModel)]="filterArray.deadline"
+          (onChange)="getTasks()"
+        >
+        </p-dropdown>
+      }
     </div>
     
     <p-table 
